@@ -8,4 +8,4 @@ Yes you! For everyone!
 
 ## Build
 
-    dotnet fsdocs build --eval --input src --output docs
+    dotnet fsdocs build --clean --eval --input src --output docs --parameters root /
