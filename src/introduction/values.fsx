@@ -20,7 +20,7 @@ Let's take a quick look at this expression:
 Let's break that down:
 1. ``5 + 5`` is an expression.
 2. The expression evaluates to ``10``
-3. The values is of type ``int``
+3. The value has the type of ``int``
 What does this mean?
 * F# is an expression-based language which means that _everything is a value_.
 This differs from languages like C# and Java which make a distinction between expressions (yielding values)
