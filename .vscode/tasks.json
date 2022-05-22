@@ -10,10 +10,6 @@
                 "build",
                 "--clean",
                 "--eval",
-                "--input",
-                "src",
-                "--output",
-                "docs",
                 "--parameters",
                 "root",
                 "/"
@@ -29,10 +25,6 @@
                 "fsdocs",
                 "watch",
                 "--eval",
-                "--input",
-                "src",
-                "--output",
-                "docs",
                 "--parameters",
                 "root",
                 "/"

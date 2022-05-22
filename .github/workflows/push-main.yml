@@ -17,7 +17,7 @@ jobs:
     - name: Restore tools
       run: dotnet tool restore
     - name: Build docs
-      run: dotnet fsdocs build --clean --eval --input src --parameters root /
+      run: dotnet fsdocs build --clean --eval --parameters root /
     - name: Deploy docs
       uses: peaceiris/actions-gh-pages@v3
       with:

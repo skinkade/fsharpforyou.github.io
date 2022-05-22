@@ -4,8 +4,8 @@ Yes you! For everyone!
 ## Development
 
     dotnet tool restore
-    dotnet fsdocs watch --eval --input src
+    dotnet fsdocs watch --eval
 
 ## Build
 
-    dotnet fsdocs build --clean --eval --input src --output docs --parameters root /
+    dotnet fsdocs build --clean --eval --parameters root /
