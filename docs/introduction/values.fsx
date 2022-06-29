@@ -83,3 +83,4 @@ This expression was expected to have type
 but here has type
     'string'
 ```
+*)
