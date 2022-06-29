@@ -1,6 +1,6 @@
 (**
 ---
-title: Types
+title: Fundamental Types
 category: Basics
 categoryindex: 2
 index: 2
@@ -8,7 +8,7 @@ index: 2
 *)
 
 (**
-# Types
+# Fundamental Types
 
 ## Primitives Types
 ``int``: Represents numerical values from ``-2,147,483,648`` to ``2,147,483,647``.  
