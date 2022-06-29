@@ -1,8 +1,8 @@
 (**
 ---
 title: Types
-category: Introduction
-categoryindex: 1
+category: Basics
+categoryindex: 2
 index: 3
 ---
 *)
