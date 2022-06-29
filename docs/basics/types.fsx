@@ -3,7 +3,7 @@
 title: Types
 category: Basics
 categoryindex: 2
-index: 3
+index: 2
 ---
 *)
 
