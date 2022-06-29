@@ -1,6 +1,6 @@
 (**
 ---
-title: Types
+title: Basic Operators
 category: Basics
 categoryindex: 2
 index: 3
