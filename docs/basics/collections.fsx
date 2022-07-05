@@ -94,15 +94,13 @@ Some of these functions include:
 and many more.
 *)
 let nums = [0..10]
+(*** include-value: nums ***)
 
-// [6; 7; 8; 9; 10]
-let filteredNums = List.filter (fun x -> x > 5) nums
+let filteredNums = List.filter (fun number -> number > 5) nums
+(*** include-value: filteredNums ***)
 
-// [12; 14; 16; 18; 20]
-let doubledFilteredNums = List.map (fun x -> x * 2) filteredNums
-
-List.iter (printfn "%d") doubledFilteredNums
-(*** include-output ***)
+let doubledFilteredNums = List.map (fun number -> number * 2) filteredNums
+(*** include-value: doubledFilteredNums ***)
 
 (**
 ## Arrays
@@ -116,8 +114,7 @@ let array = [| 1;2;3;4;5 |]
 Unlike lists, you can mutate individual elements in an array by using its indexer.
 *)
 array[0] <- 10
-printfn "%A" array
-(*** include-output ***)
+(*** include-value: array ***)
 
 
 (**
@@ -127,11 +124,16 @@ Some examples of sequence expressions are as follows:
 *)
 let numsSequence = seq { 1..10 }
 let doublesSequence = seq { for i in 0..10 -> i * 2 }
-let sequence =
-    seq {
-        1
-        2
-        3
-        4
-        5
-    }
+
+(**
+As noted in the beginning, the elements of a sequence aren't computed when the sequence is created. They are only computed
+when the value is required to perform a certain operation.
+*)
+let sequence = seq { 0..10 }
+Seq.head sequence
+(*** include-fsi-output ***)
+
+(**
+As you can see from the above example, the first element of the sequence is computed as a result of calling ``Seq.head``.
+Any further call to ``Seq.head`` will use the already evaluated value. No further evaluation of the first element is required.
+*)
