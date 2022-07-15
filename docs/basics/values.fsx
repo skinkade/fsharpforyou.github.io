@@ -83,4 +83,13 @@ This expression was expected to have type
 but here has type
     'string'
 ```
+
+## Indentation Awareness
+F# relies on the level of indentation to determine the beginning and the end of an expression.
+Consistency is key, once a new indentation offset is created, every following expression must be aligned with that offset.
 *)
+
+let twenty =
+    let ten = 10
+    ten + ten
+(*** include-fsi-output ***)
