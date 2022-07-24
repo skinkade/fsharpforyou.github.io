@@ -24,17 +24,17 @@ the ``open`` keyword followed by the module name.
 *)
 open Math
 
-let operation number = number |> add 3 |> multiply 4
-
-let operationResult = operation 40
-(*** include-fsi-output ***)
+40
+|> add 3
+|> multiply 4
+(*** include-it ***)
 
 (**
 As you can see from the above example. We import the functions from the ``Math`` module
 and call them like any other function. You can also access module members by their fully qualified names without importing the module.
 *)
-let res = Math.add 3 5
-(*** include-fsi-output ***)
+Math.add 3 5
+(*** include-it ***)
 
 (**
 You can annotate a module with ``[<AutoOpen>]`` to automatically import/open it without requiring ``open ...``.
@@ -61,11 +61,10 @@ module List =
     let double list =
         list |> List.map (fun elem -> elem * 2)
 
-let result = 
-    [1..10]
-    |> List.filter (fun x -> x % 2 = 0)
-    |> List.double
-(*** include-value: result ***)
+[1..10]
+|> List.filter (fun x -> x % 2 = 0)
+|> List.double
+(*** include-it ***)
 
 (**
 We can restrict access to certain functions, types, and their constructors
