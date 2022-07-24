@@ -22,12 +22,11 @@ module Math =
 You can use types and functions from other modules by importing them using
 the ``open`` keyword followed by the module name.
 *)
-
 open Math
 
 let operation number = number |> add 3 |> multiply 4
 
-let result = operation 40
+let operationResult = operation 40
 (*** include-fsi-output ***)
 
 (**
