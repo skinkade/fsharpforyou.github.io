@@ -46,5 +46,5 @@ List.sum numbers;;
 (*** include-it ***)
 
 (**
-To exit the interpreter, type `#quit;;` and hit enter.
+To exit the interpreter, type `#quit;;` and hit enter OR press `Ctrl D`.
 *)

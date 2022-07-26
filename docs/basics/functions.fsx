@@ -25,6 +25,11 @@ let twenty = multiply 10 2
 (*** include-fsi-output ***)
 
 (**
+Notice than in F# function parameters are seperated by whitespace instead of commas.
+Commas are usually reserved for Tuples in F#.
+*)
+
+(**
 Optionally, you can add type annotations to a function parameter by surrounding the parameter with parenthesis and annotating it with the desired type.
 The type annotation preceding the ``=`` is the return type of the function.
 *)
