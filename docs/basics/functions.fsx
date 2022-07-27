@@ -100,3 +100,24 @@ This is often used in conjunction with higher-order functions (when passing func
 
 outputNumber (fun number -> printfn "%d" number)
 (*** include-output ***)
+
+(**
+## Operator functions.
+You can create custom operators using operator functions by surrounding the operator symbols with parenthesis.  
+Valid operator symbols include: ``! $ % & * + - . / < = > ? @ ^ |``
+*)
+
+let (++) left right = left + " " + right
+
+"Hello" ++ "World"
+(*** include-it ***)
+
+(**
+The above operator is in ``infix`` form which means the operator gets placed between the two arguments.  
+You can create a unary operator, which is placed before a single parameter, by prefixing the operator symbols with ``~``. 
+*)
+
+let (~+.) number = number * number + number
+
++.2.0
+(*** include-it ***)
