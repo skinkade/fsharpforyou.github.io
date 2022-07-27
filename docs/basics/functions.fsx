@@ -27,7 +27,7 @@ let twoAndThree = addToTuple (1,2) 1
 (*** include-fsi-output ***)
 
 (**
-Notice than in F# function parameters are seperated by whitespace instead of commas.
+Notice that in F#, function parameters are separated by whitespace instead of commas.
 *)
 
 (**
@@ -40,7 +40,7 @@ let four = divide 8 2
 
 (**
 Some functions won't take in a specific parameter but instead will have a unit parameter.
-This acts as a zero parameter function.
+This acts as a zero-parameter function.
 *)
 
 let getInt () = 30
@@ -61,8 +61,7 @@ let addNumbers x y = x + y
 As you can see from the above example, the function signature is ``int -> int -> int``.
 What does this mean? A function with the signature of ``int -> int`` means the function has a single ``int`` parameter
 and returns an ``int`` value. The signature ``int -> int -> int`` means the function has a single ``int`` parameter, and returns
-another function with the signature of ``int -> int``. Functions with "multiple parameters" are instead functions with a single parameter
-that return other functions.
+another function with the signature of ``int -> int``. A multi-parameter function is just a single parameter function that returns another function.
 
 We can see this by passing one argument to the ``addNumbers`` function.
 *)
@@ -70,9 +69,9 @@ let addFive = addNumbers 5
 (*** include-fsi-output ***)
 
 (**
-This is called partial application.
-We can partially fill in parameters to a function and get a new function where only the remaining parameters need to be filled in.
-This allows us to build new reusable functions from existing functions as shown above.
+This is called partial application. We can partially fill in parameters
+to a function and get a new function where only the remaining parameters need to be filled in.
+This allows us to build new reusable functions by partially applying parameters to existing ones.
 *)
 let fifty = addFive 45
 (*** include-fsi-output ***)
@@ -82,7 +81,7 @@ let fifty = addFive 45
 Higher order functions are functions that accept functions as parameters or return functions.
 This can be very useful for abstracting away the implementation of a function (dynamic implementation).
 
-Here we will define a function named ``outputParameter`` that will accept another function as a parameter.
+Here we will define a function named ``outputNumber`` that will accept another function as a parameter.
 *)
 let outputNumber (output: int -> unit) = output 10 
 
