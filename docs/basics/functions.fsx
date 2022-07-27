@@ -18,15 +18,16 @@ These parameters will be passed into the function when it's called by the consum
 let double x = x * 2
 let add x y = x + y
 let multiply x y = x * y
+let addToTuple (x, y) z = (x + z, y + z)
 
 let ten = double 5
 let fifteen = add 10 5
 let twenty = multiply 10 2
+let twoAndThree = addToTuple (1,2) 1
 (*** include-fsi-output ***)
 
 (**
 Notice than in F# function parameters are seperated by whitespace instead of commas.
-Commas are usually reserved for Tuples in F#.
 *)
 
 (**
