@@ -9,16 +9,16 @@ index: 5
 
 (**
 # Collections
-Collections represent a finite series of elements of the same type.
+Collections represent a series of elements of the same type.
 There are different types of collections in F#, including: Lists, Arrays, and Sequences
 
 Lists: Lists are an immutable series of elements implemented as singly linked list.  
 Arrays: Arrays are a fixed-size mutable series of elements.  
 Sequences: Sequences are an immutable series of elements. Unlike arrays and lists, the elements
-of a sequence are only computed/evaluated when it is required to do so.
+of a sequence are only computed/evaluated when it is required to do so, which means they are lazily evaluated and can have an infinite members.
 
 ## Lists
-You can define a list by surrounding a semicolon separated sequence of values surrounded by square brackets like so:
+You can define a list by surrounding a **semicolon** (not comma, commas are for Tuples) separated sequence of values surrounded by square brackets like so:
 *)
 
 let list = [1; 2; 3; 4; 5]
