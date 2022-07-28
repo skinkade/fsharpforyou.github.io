@@ -98,3 +98,15 @@ let operation = addTwo >> multiplyFive >> divideThree >> subtractFour
 
 let sixteen = operation 10
 (*** include-fsi-output ***)
+
+(**
+Function composition requires one input parameter for each function.
+We can combine this with partial application to create very powerful and concise workflows.
+*)
+
+let add x y = x + y
+let multiply x y = x * y
+
+let workflow = add 5 >> multiply 2
+let thirty = workflow 10
+(*** include-fsi-output ***)
