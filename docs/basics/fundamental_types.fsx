@@ -41,7 +41,7 @@ let coordinates = (1.0, 2.0, 3.0)
 ## Unit type
 Since every expression in F# must yield or produce a value,
 the unit type is used when no other value of interest exists.
-The unit type only has a single value: ``()``
+The unit type only has a single value:
 *)
 
 ()
