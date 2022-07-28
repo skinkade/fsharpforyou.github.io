@@ -50,6 +50,8 @@ The expression ``5 + 5`` yields a value with the type of ``int``.
 Types describe the kind of value something is and what we can do with it.
 Don't worry about them right now, we'll cover this later.
 
+Expressions can span multiple lines, but the last line of an expression always yields the result (produces the value). 
+
 As you may have noticed, we didn't have to specify the value's type.
 F# has strong type inference which means that values usually don’t require type annotations.
 Although, type annotations are needed if the compiler can't figure out the type for a value,
@@ -106,7 +108,3 @@ let twenty =
     let ten = 10
     ten + ten
 (*** include-fsi-output ***)
-
-(**
-As you can see from the above example, the last line of an expression yields the result (produces the value). 
-*)
