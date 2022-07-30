@@ -12,7 +12,7 @@ index: 8
 Pattern matching allows us to decompose and deconstruct types such as Unions, Records, and Tuples based on their shape and values using patterns,
 which act as rules for their transformation. Let's start with tuple patterns so we could start to understand this concept and why it's so powerful.
 
-Let's start by decomposing a coordinate tuple into its respective ``x, y, z`` bindings.
+Let's start by decomposing a coordinate tuple into its respective `x, y, z` bindings.
 *)
 
 let coordinate = 3, 5, 1
@@ -20,9 +20,9 @@ let x, y, z = coordinate
 (*** include-fsi-output ***)
 
 (**
-Because the signature of ``coordinate`` is ``int * int * int`` the pattern ``x, y, z``
+Because the signature of `coordinate` is `int * int * int` the pattern `x, y, z`
 defines individual bindings for each position of the tuple.
-The first tuple element will be deconstructed into ``x``, the second into ``y``, and the third into ``z`` because of their positions in the pattern.
+The first tuple element will be deconstructed into `x`, the second into `y`, and the third into `z` because of their positions in the pattern.
 
 To expand on this coordinate example, we can create a discriminated union
 that represents a choice between a two-dimensional or three-dimensional coordinate value.
@@ -72,9 +72,9 @@ let zero coordinates =
 (**
 Here, instead of just defining a pattern that matches a discriminated union's identifier,
 we can match against a discriminated union's identifier AND the value associated with it.
-If the choice is ``Coord2d`` and the tuple value is ``0.0, 0.0`` then the first arm will be matched against... and so on.
-This is called a ``constant`` pattern. Where we match a value against a constant value (constant values are: strings, numerical values, and enumerations).
-Example: Matching a value of type ``int * int * int`` against a constant pattern of ``(0, 1, 2)``
+If the choice is `Coord2d` and the tuple value is `0.0, 0.0` then the first arm will be matched against... and so on.
+This is called a `constant` pattern. Where we match a value against a constant value (constant values are: strings, numerical values, and enumerations).
+Example: Matching a value of type `int * int * int` against a constant pattern of `(0, 1, 2)`
 If each tuple value is equal to the corresponding constant value in the same position, the pattern will be matched.
 
 Match expressions need to be exhaustive, which means that every possible pattern needs to be accounted for. We'll get a compiler warning otherwise.
@@ -93,7 +93,7 @@ let zero' coordinates =
 As you can see from the above example, we don't necessarily care about the data associated with the identifier in the last two cases, so we just ignore it.
 
 However, this code can still be improved, the first two and the last two patterns evaluate to the same value.
-``if the first OR second pattern matches then ...`` and ``if the third OR fourth pattern matches then ...``.
+`if the first OR second pattern matches then ...` and `if the third OR fourth pattern matches then ...`.
 We could simplify this code by using the OR pattern like so:
 *)
 let zero'' coordinates =
@@ -109,7 +109,7 @@ If any of the patterns match against the value, then that shared expression will
 
 Sometimes, we just want to deal with the value directly in a match arm. We could do this using the variable pattern.
 The variable pattern creates a binding from the value we're matching against to a specific name.
-You can also use the variable pattern in conjunction with a ``when`` expression for conditional logic.
+You can also use the variable pattern in conjunction with a `when` expression for conditional logic.
 *)
 
 let matchValue value =
@@ -137,8 +137,8 @@ matchCoords { X = 10; Y = 20; Z = 30 }
 
 (**
 As you can see from the above example,
-the pattern ``{ X = 0; Y = 0; Z = 0 }`` will match against any record definition with the corresponding values and
-the pattern ``{ X = x; Y = y; Z = z }`` will deconstruct the record values into individual bindings.
+the pattern `{ X = 0; Y = 0; Z = 0 }` will match against any record definition with the corresponding values and
+the pattern `{ X = x; Y = y; Z = z }` will deconstruct the record values into individual bindings.
 
 We can decompose a list using the list pattern like so:
 *)
@@ -157,7 +157,7 @@ outputList [0; 10; 20]
 (*** include-output ***)
 
 (**
-You can use the CONS pattern (``::``) to deconstruct a list into its head and tail values like so:
+You can use the CONS pattern (`::`) to deconstruct a list into its head and tail values like so:
 *)
 let outputList' list =
     match list with
@@ -171,10 +171,10 @@ outputList' [1;2;3;4;5]
 
 (**
 As you can see from the above example, if there is a single element present in the list
-the first element will be assigned to the name ``head``, and the tail of the list (the elements other then the head) will
-be assigned to the name ``tail``.
+the first element will be assigned to the name `head`, and the tail of the list (the elements other then the head) will
+be assigned to the name `tail`.
 
-This pattern can be extended by using ``first :: second :: tail``
+This pattern can be extended by using `first :: second :: tail`
 which will match any list that has 2 of more elements.
 *)
 let outputList'' list =
@@ -189,5 +189,7 @@ outputList'' [1;2]
 
 (**
 This pattern can be extended to match a list with any number of elements like so:
-``first :: second :: third :: fourth :: tail`` and so on...
+`first :: second :: third :: fourth :: tail` and so on...
+
+This is 
 *)

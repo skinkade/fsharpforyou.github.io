@@ -23,9 +23,9 @@ Let's take a quick look at this expression:
 (**
 Let's break that down:
 
- 1. ``5 + 5`` is an expression.
- 2. The expression evaluates to ``10``
- 3. The value has the type of ``int``
+ 1. `5 + 5` is an expression.
+ 2. The expression evaluates to `10`
+ 3. The value has the type of `int`
 
 What does this mean?
 
@@ -44,9 +44,9 @@ let ten = 5 + 5
 
 (**
 From left to right, this reads as:
-``let`` the name ``ten`` be assigned to the result of the expression ``5 + 5``.
+`let` the name `ten` be assigned to the result of the expression `5 + 5`.
 
-The expression ``5 + 5`` yields a value with the type of ``int``.
+The expression `5 + 5` yields a value with the type of `int`.
 Types describe the kind of value something is and what we can do with it.
 Don't worry about them right now, we'll cover this later.
 
@@ -65,8 +65,8 @@ let five: float = 5
 
 (**
 By default let bindings are immutable which means their values can’t be changed after we create them.
-F# does support mutable let bindings, but we have to explicitly declare that a binding is mutable using the ``mutable``
-keyword and mutate it using the ``<-`` operator.
+F# does support mutable let bindings, but we have to explicitly declare that a binding is mutable using the `mutable`
+keyword and mutate it using the `<-` operator.
 *)
 
 let mutable result = 1 + 1
@@ -87,7 +87,8 @@ Why are let bindings immutable by default? Immutability offers a few benefits.
 As noted above, F# is a statically typed language which means that every value has a single type and we are unable to change that type after initialization.
 This allows us to write code with confidence as every value's type is checked at compile time and is guaranteed to be correct or our application won't compile.
 
-Because the value of `result` has the type of ``int``, we cannot change the binding to a value with the type of `string`. This code will result in a compiler error:
+Because the value of `result` has the type of `int`, we cannot change the binding to a value with the type of `string`.
+This code will result in a compiler error:
 ```fsharp
 let mutable result = 1 + 1
 result <- "Hello"

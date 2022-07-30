@@ -12,14 +12,14 @@ index: 3
 Operators are special functions that take one or more values and yield another value.
 
 ### Arithmetic Operators:
-Arithmetic operators are concerned with mathematical operations such as ``add``, ``subtract``, ``multiply``, ``divide``,
+Arithmetic operators are concerned with mathematical operations such as `add`, `subtract`, `multiply`, `divide`,
 and yield the result of such operations.  
-``+``: add two numbers  
-``-``: subtract two numbers  
-``*``: multiply two numbers  
-``/``: divide two numbers  
-``**``: power  
-``%``: modulo (remainder after the division of two numbers)  
+`+`: add two numbers  
+`-`: subtract two numbers  
+`*`: multiply two numbers  
+`/`: divide two numbers  
+`**`: power  
+`%`: modulo (remainder after the division of two numbers)  
 *)
 let addition = 5 + 2 // 5 plus 2
 let subtraction = 5 - 2 // 5 minus 2
@@ -32,17 +32,17 @@ let exponent = 5.0 ** 2.0 // 5 to the power of 2
 (**
 ### Logical operators:
 Logical operators perform comparison operations on two values and yield boolean (true or false) values.
-Example: ``is ... equal to ...`` or ``is ... greater then ...``  
+Example: `is ... equal to ...` or `is ... greater then ...`  
 
-``=``: equality  
-``<>``: inequality  
-``<``: less than  
-``>``: greater than  
-``<=``: less than or equal to  
-``>=``: greater than or equal to  
-``&&``: logical OR  
-``||``: logical AND  
-``not``: logical NOT, negates a boolean value.  
+`=`: equality  
+`<>`: inequality  
+`<`: less than  
+`>`: greater than  
+`<=`: less than or equal to  
+`>=`: greater than or equal to  
+`&&`: logical OR  
+`||`: logical AND  
+`not`: logical NOT, negates a boolean value.  
 *)
 let equals = 5 = 5 // is 5 equal to 5
 let notEquals = 5 <> 5 // is 5 NOT equal to 5

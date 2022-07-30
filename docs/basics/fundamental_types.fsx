@@ -14,11 +14,11 @@ Every value in F# has a type. Types describe the kind of value something is and 
 ## Primitives Types
 Primitive types are the most basic types in F# and they form the basis of nearly every program.
 
-``int``: Represents numerical values from ``-2,147,483,648`` to ``2,147,483,647``.  
-``float``: Represents a 64-bit floating point numerical value. Possible values range from: ``-1.79769313486232e308`` to ``1.79769313486232e308``.    
-``bool``: Represents a ``True`` or ``false`` value.  
-``char``: Represents a unicode character value.  
-``string``: Represents a sequence of ``char``s (unicode text).
+`int`: Represents numerical values from `-2,147,483,648` to `2,147,483,647`.  
+`float`: Represents a 64-bit floating point numerical value. Possible values range from: `-1.79769313486232e308` to `1.79769313486232e308`.    
+`bool`: Represents a `True` or `false` value.  
+`char`: Represents a unicode character value.  
+`string`: Represents a sequence of `char`s (unicode text).
 *)
 
 let integer = 1

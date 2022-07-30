@@ -20,7 +20,7 @@ module Math =
 
 (**
 You can use types and functions from other modules by importing them using
-the ``open`` keyword followed by the module name.
+the `open` keyword followed by the module name.
 *)
 open Math
 
@@ -30,14 +30,14 @@ open Math
 (*** include-it ***)
 
 (**
-As you can see from the above example. We import the functions from the ``Math`` module
+As you can see from the above example. We import the functions from the `Math` module
 and call them like any other function. You can also access module members by their fully qualified names without importing the module.
 *)
 Math.add 3 5
 (*** include-it ***)
 
 (**
-You can annotate a module with ``[<AutoOpen>]`` to automatically import/open it without requiring ``open ...``.
+You can annotate a module with `[<AutoOpen>]` to automatically import/open it without requiring `open ...`.
 The primary purpose of this is to automatically import let bindings and utility functions
 to allow other modules to call them without requiring an import.
 This can however cause clutter if you use it too much and it should be avoided in a lot of cases.
@@ -52,9 +52,9 @@ log "I called a module function without an `open`"
 
 (**
 Sometimes it makes sense to require qualified access for various reasons including name conflicts, clarity/semantics, and integration
-with other qualified function calls. You can do this with the ``[<RequireQualifiedAccess>]`` attribute.
+with other qualified function calls. You can do this with the `[<RequireQualifiedAccess>]` attribute.
 Here we require qualified access to seamlessly integrate our function with other List module functions in the pipeline
-and avoid naming conflicts with other ``double`` functions that may exist elsewhere.
+and avoid naming conflicts with other `double` functions that may exist elsewhere.
 *)
 [<RequireQualifiedAccess>]
 module List =
@@ -69,9 +69,9 @@ module List =
 (**
 We can restrict access to certain functions, types, and their constructors
 by using accessibility modifiers.  
-``public`` indicates that a function or type can be accessed by any module.  
-``private`` indicates that a function or type can be accessed by only the same module.  
-``internal`` indicates that a function or type can be accessed within the same assembly.
+`public` indicates that a function or type can be accessed by any module.  
+`private` indicates that a function or type can be accessed by only the same module.  
+`internal` indicates that a function or type can be accessed within the same assembly.
 *)
 
 module AccessibilityModifiers =

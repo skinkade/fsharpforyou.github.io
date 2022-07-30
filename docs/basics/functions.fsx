@@ -32,7 +32,7 @@ Notice that in F#, function parameters are separated by whitespace instead of co
 
 (**
 Optionally, you can add type annotations to a function parameter by surrounding the parameter with parenthesis and annotating it with the desired type.
-The type annotation preceding the ``=`` is the return type of the function.
+The type annotation preceding the `=` is the return type of the function.
 *)
 let divide (left: int) (right: int) : int = left / right
 let four = divide 8 2
@@ -51,19 +51,19 @@ let thirty = getInt ()
 ## Currying and Function signatures
 In F#, all functions are curried.
 This means that every function has a single parameter.
-What about ``let add x y = ...``, doesn't that have two parameters? 
+What about `let add x y = ...`, doesn't that have two parameters? 
 If we look at this function's signature, we could figure out what exactly is going on.
 *)
 let addNumbers x y = x + y
 (*** include-fsi-output ***)
 
 (**
-As you can see from the above example, the function signature is ``int -> int -> int``.
-What does this mean? A function with the signature of ``int -> int`` means the function has a single ``int`` parameter
-and returns an ``int`` value. The signature ``int -> int -> int`` means the function has a single ``int`` parameter, and returns
-another function with the signature of ``int -> int``. A multi-parameter function is just a single parameter function that returns another function.
+As you can see from the above example, the function signature is `int -> int -> int`.
+What does this mean? A function with the signature of `int -> int` means the function has a single `int` parameter
+and returns an `int` value. The signature `int -> int -> int` means the function has a single `int` parameter, and returns
+another function with the signature of `int -> int`. A multi-parameter function is just a single parameter function that returns another function.
 
-We can see this by passing one argument to the ``addNumbers`` function.
+We can see this by passing one argument to the `addNumbers` function.
 *)
 let addFive = addNumbers 5
 (*** include-fsi-output ***)
@@ -77,8 +77,8 @@ let fifty = addFive 45
 (*** include-fsi-output ***)
 
 (**
-Because we partially applied ``5`` to the ``addNumbers`` function. The resulting ``addFive`` function
-represents ``5 + value``. As shown above, if we pass ``45`` into the ``addFive`` function, it would equate to ``5 + 45``.
+Because we partially applied `5` to the `addNumbers` function. The resulting `addFive` function
+represents `5 + value`. As shown above, if we pass `45` into the `addFive` function, it would equate to `5 + 45`.
 *)
 
 (**
@@ -86,12 +86,12 @@ represents ``5 + value``. As shown above, if we pass ``45`` into the ``addFive``
 Higher order functions are functions that accept functions as parameters or return functions.
 This can be very useful for abstracting away the implementation of a function (dynamic implementation).
 
-Here we will define a function named ``outputNumber`` that will accept another function as a parameter.
+Here we will define a function named `outputNumber` that will accept another function as a parameter.
 *)
 let outputNumber (output: int -> unit) = output 10 
 
 (**
-Because ``printfn "%d"`` returns a function with the signature of ``int -> unit``, we can pass it to the ``outputNumber`` function.
+Because `printfn "%d"` returns a function with the signature of `int -> unit`, we can pass it to the `outputNumber` function.
 *)
 let printNumber = printfn "%d"
 outputNumber printNumber
@@ -109,7 +109,7 @@ outputNumber (fun number -> printfn "%d" number)
 (**
 ## Operator functions
 You can create custom operators using operator functions by surrounding the operator symbols with parenthesis.  
-Valid operator symbols include: ``! $ % & * + - . / < = > ? @ ^ |``
+Valid operator symbols include: `! $ % & * + - . / < = > ? @ ^ |`
 *)
 
 let (++) left right = left + " " + right
@@ -118,8 +118,8 @@ let (++) left right = left + " " + right
 (*** include-it ***)
 
 (**
-The above operator is in ``infix`` form which means the operator gets placed between the two arguments.  
-You can create a unary operator, which is placed before a single parameter, by prefixing the operator symbols with ``~``. 
+The above operator is in `infix` form which means the operator gets placed between the two arguments.  
+You can create a unary operator, which is placed before a single parameter, by prefixing the operator symbols with `~`. 
 *)
 
 let (~+.) number = number * number + number
