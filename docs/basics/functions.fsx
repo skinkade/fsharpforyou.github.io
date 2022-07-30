@@ -77,6 +77,11 @@ let fifty = addFive 45
 (*** include-fsi-output ***)
 
 (**
+Because we partially applied ``5`` to the ``addNumbers`` function. The resulting ``addFive`` function
+represents ``5 + value``. As shown above, if we pass ``45`` into the ``addFive`` function, it would equate to ``5 + 45``.
+*)
+
+(**
 ## Passing functions around
 Higher order functions are functions that accept functions as parameters or return functions.
 This can be very useful for abstracting away the implementation of a function (dynamic implementation).

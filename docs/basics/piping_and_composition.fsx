@@ -7,7 +7,6 @@ index: 9
 ---
 *)
 
-
 (**
 ## Piping
 Piping allows you to pass values into a function's or union's parameter and return the result.
@@ -105,8 +104,26 @@ We can combine this with partial application to create very powerful and concise
 *)
 
 let add x y = x + y
+let subtract x y = x - y
 let multiply x y = x * y
+let divide x y = x / y 
 
-let workflow = add 5 >> multiply 2
-let thirty = workflow 10
-(*** include-fsi-output ***)
+let workflow = add 5 >> subtract 10 >> multiply -2 >> divide 80
+
+workflow 25
+(*** include-it ***)
+
+(**
+In the above example, we compose ``add 5``, ``subtract 10``, ``multiply -2``, and ``divide 80`` into
+a single workflow. If we pass ``25`` into this new function, we get the result ``2``. Why is this?
+Let's take this step by step.
+
+``25`` is passed into the function ``add 5`` which means ``5 + 25``, the result is ``30``.  
+``30`` is then passed into the function ``subtract 10`` which means ``10 - 30``, the result is ``-20``.  
+``-20`` is then passed into the function ``multiply -2`` which means ``-2 * -20``, the result is ``40``.  
+``40`` is then passed into the function ``divide 80`` which means ``80 / 40``, the result is ``2``.
+
+Because we partially apply the first parameter to each function, the resulting function only has one parameter.
+This single parameter represents the second parameter of the original function.
+So passing in a value to ``add 5`` would equate to ``5 + value``.
+*)
