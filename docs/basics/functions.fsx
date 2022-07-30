@@ -107,7 +107,7 @@ outputNumber (fun number -> printfn "%d" number)
 (*** include-output ***)
 
 (**
-## Operator functions.
+## Operator functions
 You can create custom operators using operator functions by surrounding the operator symbols with parenthesis.  
 Valid operator symbols include: ``! $ % & * + - . / < = > ? @ ^ |``
 *)
