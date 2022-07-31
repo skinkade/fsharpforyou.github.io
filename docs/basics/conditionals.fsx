@@ -17,8 +17,14 @@ let outputAge age =
   if age >= 18 then printfn "You are an adult!"
   else printfn "You are not an adult!"
 
-outputAge 23
-outputAge 15
+(**
+This reads as:
+if age is greater then or equal to 18, `printfn "You are an adult"`   
+otherwise, `printfn "You are not an adult!"`
+*)
+
+outputAge 23 // is greater than 18
+outputAge 15 // is NOT greater than 18
 (*** include-output ***)
 
 (**
