@@ -116,6 +116,22 @@ john
 (*** include-it ***)
 
 (**
+As F# is evaluated top-down, types normally can't be mutually recursive, which means they can't have references to each other.
+You have to use a special syntax to do this.
+*)
+type Occupant =
+  { FirstName: string
+    LastName: string
+    Address: Address }
+and Address =
+  { State: string
+    City: string
+    StreetAddress: string
+    ZipCode: string
+    Occupant: Occupant }
+(*** include-fsi-output ***)
+
+(**
 ## Discriminated Unions
 A discriminated union represents a choice between any number of cases with optional data.
 *)
