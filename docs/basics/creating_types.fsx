@@ -202,4 +202,26 @@ If you're unsure or forget, you'd have to look at the type definition to refresh
 This can be a hassle as you probably won't remember what the values represent in all of your discriminated unions 
 unless you create individual bindings for them. You shouldn't rely solely upon your memory because you'll often forget
 and other people who are reading your code won't have the same luxury, they simply wouldn't know without knowledge of your intention.
+
+Sometimes, you may want to define a single-case discriminated union. There's a shortcut for this:
 *)
+
+type A = B
+(*** include-fsi-output ***)
+
+(**
+This may look like a type alias at first, but its not. 
+Whats the difference? If `B` was a defined type, then this would be an alias.
+Since it's not a type, its a single-case discriminated union.
+*)
+
+type String50 = String50 of string
+
+(**
+Why would you want to create a discriminated union with a single case?
+It's better to represent simple or primitive types such as `string` in a more specific or explicit manner.
+Why? Because `string` doesn't actually mean anything, it can be any value whatsoever (that's a string).
+We create a `String50` type here which represents a wrapped string value with a max length of 50.
+This constraint can't exist on any string value because `string` is arbitrary, it can be empty, not empty, and have any length.
+*)
+
