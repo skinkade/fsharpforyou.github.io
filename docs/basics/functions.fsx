@@ -54,13 +54,19 @@ This means that every function has a single parameter.
 What about `let add x y = ...`, doesn't that have two parameters? 
 If we look at this function's signature, we could figure out what exactly is going on.
 *)
+let addFive x = x + 5
+(*** include-fsi-output ***)
+
+(**
+A function with the signature of `int -> int` means the function has a single `int` parameter
+and returns an `int` value.
+*)
+
 let addNumbers x y = x + y
 (*** include-fsi-output ***)
 
 (**
-As you can see from the above example, the function signature is `int -> int -> int`.
-What does this mean? A function with the signature of `int -> int` means the function has a single `int` parameter
-and returns an `int` value. The signature `int -> int -> int` means the function has a single `int` parameter, and returns
+The signature `int -> int -> int` means the function has a single `int` parameter, and returns
 another function with the signature of `int -> int`. A multi-parameter function is just a single parameter function that returns another function.
 
 We can see this by passing one argument to the `addNumbers` function.
@@ -82,7 +88,7 @@ represents `5 + value`. As shown above, if we pass `45` into the `addFive` funct
 *)
 
 (**
-## Passing functions around
+## Functions as values
 Higher order functions are functions that accept functions as parameters or return functions.
 This can be very useful for abstracting away the implementation of a function (dynamic implementation).
 
