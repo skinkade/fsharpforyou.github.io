@@ -9,187 +9,135 @@ index: 8
 
 (**
 # Pattern matching
-Pattern matching allows us to decompose and deconstruct types such as Unions, Records, and Tuples based on their shape and values using patterns,
-which act as rules for their transformation. Let's start with tuple patterns so we could start to understand this concept and why it's so powerful.
+Pattern matching allows us to match against or decompose values using patterns, which act as rules for their transformation.
+Pattern matching is used primarily in three ways: function arguments, let bindings, and match expressions.
+All of these constructs allow you to define patterns that can decompose or deconstruct a value.
 
-Let's start by decomposing a coordinate tuple into its respective `x, y, z` bindings.
+Let's start with two simple patterns: The tuple and variable patterns.
 *)
 
-let coordinate = 3, 5, 1
-let x, y, z = coordinate
+let coordinates = (1.0, 2.0, 3.0)
+let (x, y, z) = coordinates
 (*** include-fsi-output ***)
 
 (**
-Because the signature of `coordinate` is `int * int * int` the pattern `x, y, z`
-defines individual bindings for each position of the tuple.
-The first tuple element will be deconstructed into `x`, the second into `y`, and the third into `z` because of their positions in the pattern.
+The tuple pattern allows us to define a pattern for each position of a tuple value
+and the variable pattern allows us to bind values to names.
+We can combine these two patterns to extract a tuple with three values into three respective bindings as demonstrated in the above example.
 
-To expand on this coordinate example, we can create a discriminated union
-that represents a choice between a two-dimensional or three-dimensional coordinate value.
+This is not a conditional pattern, the variable pattern will always match against a value.
+We may want to define a set of patterns to conditionally match against a value.
+We can do this with a match expression.
 
-```fsharp
+Here we will demonstrate a match expression with the identifier pattern,
+which allows us to match against a discriminated union's identifier.
+*)
+
+type Suit =
+    | Heart
+    | Diamond
+    | Club
+    | Spade
+
+let suit = Heart
+
+match suit with
+| Heart -> "Heart"
+| Diamond -> "Diamond"
+| Club -> "Club"
+| Spade -> "Spade"
+(*** include-it ***)
+
+(**
+Match expressions allow us to sequentially define patterns that will be checked against the value one by one until a match is
+found. If a pattern is matched against a value, the corresponding arm will be evaluated and a value will be produced.
+
+Match expressions need to be exhaustive, which means every potential pattern needs to be accounted for.
+In some cases, this can be cumbersome or tedious. However, a wildcard pattern `_` can be used which matches any given value and discards it.
+*)
+
+match suit with
+| Heart -> "Heart"
+| Diamond -> "Diamond"
+| _ -> "Neither heart nor diamond"
+
+(**
+What about discriminated union identifiers that have associated values?
+We could also use a pattern for those too!
+*)
+
+type ContactInformation =
+    | EmailAddress of string
+    | PhoneNumber of string
+
+let contact contactInformation =
+    match contactInformation with
+    | EmailAddress emailAddress ->
+        $"Sending an email to {emailAddress}"
+    | PhoneNumber phoneNumber ->
+        $"Sending a text message to {phoneNumber}"
+
+let contactInfo = EmailAddress "johndoe@site.com"
+contact contactInfo
+(*** include-it ***)
+
+(**
+Here we utilize the identifier pattern and the variable pattern.
+We bind the identifier's associated value to a name and use it in the return value.
+
+We may want a pattern to conditionally match a value, for instance: Matching a DU's identifier and its value.
+There are many ways to do this. One way is to match a value against a constant value.
+*)
+
 type Coordinate =
-    | Coord2d of int * int
-    | Coord3d of int * int * int
-```
+    | TwoDimensional of float * float
+    | ThreeDimensional of float * float * float
 
-Now that we've done this, how could we determine whether a coordinate value is either two-dimensional or three-dimensional?
-We could utilize a match expression to do this. A match expression will allow us to define multiple patterns which will
-be evaluated against the value in order. Once a pattern is matched, the expression associated with that match arm will be evaluated.
-*)
+let plot coordinate =
+    match coordinate with
+    | TwoDimensional (0.0, 0.0) -> "Zero"
+    | ThreeDimensional (0.0, 0.0, 0.0) -> "Zero"
+    | TwoDimensional (x, y) -> $"X: {x}, Y: {y}"
+    | ThreeDimensional (x, y, z) -> $"X: {x}, Y: {y}, Z: {z}"
 
-type Coordinate =
-    | Coord2d of int * int
-    | Coord3d of int * int * int
+(***)
 
-let details coord =
-    match coord with
-    | Coord2d (x, y) -> printfn $"two-dimensional coordinate value. X: {x}, Y: {y}"
-    | Coord3d (x, y, z) -> printfn $"three-dimensional coordinate value. X: {x}, Y: {y}, Z: {z}"
+let coordinate1 = TwoDimensional (0.0, 0.0)
+plot coordinate1
+(*** include-it ***)
 
-let coord2d = Coord2d(5, 10)
-let coord3d = Coord3d(1, 5, 10)
-
-details coord2d
-details coord3d
-(*** include-output ***)
+let coordinate2 = TwoDimensional (5.0, 3.0)
+plot coordinate2
+(*** include-it ***)
 
 (**
-As you can see from the above example, we can define multiple match arms each with their own pattern.
-We match against a Discriminated Union by matching against the choice, and optionally, the data associated with it.
-Because we're simply deconstructing the data, the arm will always be matched against if the choice is correct.
+As shown above, the constant pattern allows you to match a value against constants (numerical, character, string literal, and enum values)
 
-However, we can define multiple patterns for a single choice, by additionally matching against the data associated with it.
-*)
-let zero coordinates =
-    match coordinates with
-    // if the identifier is Coord2 and the tuple is (0, 0)
-    | Coord2d (0, 0) -> true
-    // if the identifier is Coord3 and the tuple is (0, 0, 0)
-    | Coord3d (0, 0, 0) -> true
-    | Coord2d (x, y) -> false
-    | Coord3d (x, y, z) -> false
-(**
-Here, instead of just defining a pattern that matches a discriminated union's identifier,
-we can match against a discriminated union's identifier AND the value associated with it.
-If the choice is `Coord2d` and the tuple value is `0.0, 0.0` then the first arm will be matched against... and so on.
-This is called a `constant` pattern. Where we match a value against a constant value (constant values are: strings, numerical values, and enumerations).
-Example: Matching a value of type `int * int * int` against a constant pattern of `(0, 1, 2)`
-If each tuple value is equal to the corresponding constant value in the same position, the pattern will be matched.
-
-Match expressions need to be exhaustive, which means that every possible pattern needs to be accounted for. We'll get a compiler warning otherwise.
-In some cases, this can be tedious (or impossible). Often times we only want to match against a few patterns and discard the rest.
-We can do this using the wildcard pattern, identified by an underscore as shown below:
+The value associated with a single-case discriminated union can be deconstructed into a binding using the variable pattern.
+A match expression isn't required as the union only has a single case and the variable pattern will always match against a value.
 *)
 
-let zero' coordinates =
-    match coordinates with
-    | Coord2d (0, 0) -> true
-    | Coord3d (0, 0, 0) -> true
-    | Coord2d _ -> false // effectively ignores the data associated with this DU identifier
-    | Coord3d _ -> false // effectively ignores the data associated with this DU identifier
+type String50 = String50 of string
 
-(**
-As you can see from the above example, we don't necessarily care about the data associated with the identifier in the last two cases, so we just ignore it.
-
-However, this code can still be improved, the first two and the last two patterns evaluate to the same value.
-`if the first OR second pattern matches then ...` and `if the third OR fourth pattern matches then ...`.
-We could simplify this code by using the OR pattern like so:
-*)
-let zero'' coordinates =
-    match coordinates with
-    | Coord2d (0, 0)
-    | Coord3d (0, 0, 0) -> true
-    | Coord2d _
-    | Coord3d _ -> false
-
-(**
-As you can see from the above example, we can define one resulting expression for multiple patterns.
-If any of the patterns match against the value, then that shared expression will be evaluated.
-
-Sometimes, we just want to deal with the value directly in a match arm. We could do this using the variable pattern.
-The variable pattern creates a binding from the value we're matching against to a specific name.
-You can also use the variable pattern in conjunction with a `when` expression for conditional logic.
-*)
-
-let matchValue value =
-    match value with
-    | value when value > 5 -> $"{value} is greater than 5"
-    | value -> sprintf $"Value is {value}"
-
-let matchWithTen = matchValue 10
-let matchWithTwo = matchValue 2
+let string50 = String50 "Hello, World!"
+let (String50 value) = string50
 (*** include-fsi-output ***)
 
 (**
-We can decompose records and match against their values using a record pattern.
-*)
-type Coords = { X: int; Y: int; Z: int }
-
-let matchCoords coords =
-    match coords with
-    | { X = 0; Y = 0; Z = 0 } -> printfn "X, Y, and Z are all 0"
-    | { X = x; Y = y; Z = z } -> printfn $"X: {x}, Y: {y}, Z: {z}"
-
-matchCoords { X = 0; Y = 0; Z = 0 }
-matchCoords { X = 10; Y = 20; Z = 30 }
-(*** include-output ***)
-
-(**
-As you can see from the above example,
-the pattern `{ X = 0; Y = 0; Z = 0 }` will match against any record definition with the corresponding values and
-the pattern `{ X = x; Y = y; Z = z }` will deconstruct the record values into individual bindings.
-
-We can decompose a list using the list pattern like so:
+Sometimes, you may want to use the variable pattern in conjunction with a conditional expression.
+We can do this with `when`
 *)
 
-let outputList list =
-    match list with
-    | [ 1 ] -> printfn "Single value: 1"
-    | [ 1; 2 ] -> printfn "Two values: 1 and 2"
-    | [ 1; 2; 3 ] -> printfn "Three values: 1, 2, and 3"
-    | [ x; y; z ] -> printfn $"Three values: {x}, {y}, and {z}"
+let number = 50
 
-outputList [1]
-outputList [1; 2]
-outputList [1; 2; 3]
-outputList [0; 10; 20]
-(*** include-output ***)
+match number with
+| number when number >= 100 -> "value >= 100"
+| number when number >= 10 -> "value >= 10"
+| number -> "value = 10"
+
+(*** include-it ***)
 
 (**
-You can use the CONS pattern (`::`) to deconstruct a list into its head and tail values like so:
-*)
-let outputList' list =
-    match list with
-    | [] -> printfn "List is empty."
-    | head :: tail -> printfn $"Head: {head}, Tail: %A{tail}"
-
-outputList' []
-outputList' [1]
-outputList' [1;2;3;4;5]
-(*** include-output ***)
-
-(**
-As you can see from the above example, if there is a single element present in the list
-the first element will be assigned to the name `head`, and the tail of the list (the elements other then the head) will
-be assigned to the name `tail`.
-
-This pattern can be extended by using `first :: second :: tail`
-which will match any list that has 2 of more elements.
-*)
-let outputList'' list =
-    match list with
-    | [] -> printfn "List is empty."
-    | first :: second :: tail -> printfn $"First: {first}, Second: {second}, Tail: %A{tail}"
-    | head :: tail -> printfn $"Head: {head}, Tail: %A{tail}"
-
-outputList'' [1]
-outputList'' [1;2]
-(*** include-output ***)
-
-(**
-This pattern can be extended to match a list with any number of elements like so:
-`first :: second :: third :: fourth :: tail` and so on...
-
-This is 
+As you can see, we bind `number` to a new name, shadowing the original, and utilize a conditional expression.
+If the expression produces a boolean value of `true`, the match arm will produce a value.
 *)
