@@ -85,6 +85,12 @@ match number with
 | 10 -> ...
 | 20 -> ...
 | 30 -> ...
+```
+
+Hopefully by now you'll have an understanding of pattern matching.
+Let's go over some additional patterns.
+
+The identifier pattern allows us to match against a discriminated union's identifier and optionally, the value associated with it.
 *)
 
 type ContactInformation =
