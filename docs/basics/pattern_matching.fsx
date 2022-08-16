@@ -9,135 +9,161 @@ index: 8
 
 (**
 # Pattern matching
-Pattern matching allows us to match against or decompose values using patterns, which act as rules for their transformation.
-Pattern matching is used primarily in three ways: function arguments, let bindings, and match expressions.
-All of these constructs allow you to define patterns that can decompose or deconstruct a value.
 
-Let's start with two simple patterns: The tuple and variable patterns.
+Pattern matching allows us to decompose or deconstruct values using patterns, which act as rules for their transformation.
+Pattern matching is used primarily in three ways: function arguments, let bindings, and match expressions.
+
+With pattern matching we can:
+
+ 1. Bind values to names.
+ 2. Evaluate values against constants.
+ 3. Deconstruct and decompose the values of tuples, records, discriminated unions, tuples, and more. 
+
+Here we can decompose a tuple into its constituent bindings using the tuple and variable patterns. 
 *)
 
-let coordinates = (1.0, 2.0, 3.0)
+let coordinates = (0.0, 5.0, 10.0)
 let (x, y, z) = coordinates
 (*** include-fsi-output ***)
 
 (**
-The tuple pattern allows us to define a pattern for each position of a tuple value
-and the variable pattern allows us to bind values to names.
-We can combine these two patterns to extract a tuple with three values into three respective bindings as demonstrated in the above example.
+What's going on here?
+
+ 1. The tuple pattern allows us to define a pattern for each value of a tuple by its position.
+ 2. The variable pattern binds values to names.
+
+By combining the tuple and variable pattern we can bind each value of a tuple, by its position, to a name.
 
 This is not a conditional pattern, the variable pattern will always match against a value.
 We may want to define a set of patterns to conditionally match against a value.
 We can do this with a match expression.
 
-Here we will demonstrate a match expression with the identifier pattern,
-which allows us to match against a discriminated union's identifier.
-*)
+```fsharp
+match value with
+| pattern1 -> expression1
+| pattern2 -> expression2
+| pattern3 -> expression3
+```
 
-type Suit =
-    | Heart
-    | Diamond
-    | Club
-    | Spade
+Each pattern is sequentially evaluated against the value.
+Once the first match is found the match arm will evaluate the corresponding expression and produce a value.
 
-let suit = Heart
+A match expression must be exhaustive, which means every possible pattern for a given value needs to be accounted for.
+In some cases, this may be tedious or even impossible to do.
+We can utilize the wildcard pattern which will always match and discard the value.
 
-match suit with
-| Heart -> "Heart"
-| Diamond -> "Diamond"
-| Club -> "Club"
-| Spade -> "Spade"
-(*** include-it ***)
+```fsharp
+match value with
+| _ -> expression
+```
 
-(**
-Match expressions allow us to sequentially define patterns that will be checked against the value one by one until a match is
-found. If a pattern is matched against a value, the corresponding arm will be evaluated and a value will be produced.
+We can combine a pattern with a conditional expression using `when`.
+If the pattern matches and the conditional expression evaluates to true,
+the corresponding match arm will be evaluated.
 
-Match expressions need to be exhaustive, which means every potential pattern needs to be accounted for.
-In some cases, this can be cumbersome or tedious. However, a wildcard pattern `_` can be used which matches any given value and discards it.
-*)
+```fsharp
+match value with
+| pattern1 when ... -> expression1
+```
 
-match suit with
-| Heart -> "Heart"
-| Diamond -> "Diamond"
-| _ -> "Neither heart nor diamond"
+This is often used in conjunction with the variable pattern.
+The newly bound value will be used in the conditional expression as shown below:
 
-(**
-What about discriminated union identifiers that have associated values?
-We could also use a pattern for those too!
+```fsharp
+let number = 10
+
+match number with
+| value when value > 100 -> ...
+| value when value > 50 -> ...
+| value -> ...
+```
+
+The constant pattern will match a value against a constant value (character, string, number, or enumeration).
+If the constant value is equal to the value we're testing it against, then the match arm will be evaluated.
+
+```fsharp
+match number with
+| 10 -> ...
+| 20 -> ...
+| 30 -> ...
 *)
 
 type ContactInformation =
+    | None
     | EmailAddress of string
     | PhoneNumber of string
 
-let contact contactInformation =
-    match contactInformation with
-    | EmailAddress emailAddress ->
-        $"Sending an email to {emailAddress}"
-    | PhoneNumber phoneNumber ->
-        $"Sending a text message to {phoneNumber}"
-
-let contactInfo = EmailAddress "johndoe@site.com"
-contact contactInfo
-(*** include-it ***)
-
-(**
-Here we utilize the identifier pattern and the variable pattern.
-We bind the identifier's associated value to a name and use it in the return value.
-
-We may want a pattern to conditionally match a value, for instance: Matching a DU's identifier and its value.
-There are many ways to do this. One way is to match a value against a constant value.
-*)
-
-type Coordinate =
-    | TwoDimensional of float * float
-    | ThreeDimensional of float * float * float
-
-let plot coordinate =
-    match coordinate with
-    | TwoDimensional (0.0, 0.0) -> "Zero"
-    | ThreeDimensional (0.0, 0.0, 0.0) -> "Zero"
-    | TwoDimensional (x, y) -> $"X: {x}, Y: {y}"
-    | ThreeDimensional (x, y, z) -> $"X: {x}, Y: {y}, Z: {z}"
+let contact (contactInfo: ContactInformation) =
+    match contactInfo with
+    | None -> "No contact info"
+    | EmailAddress emailAddress -> $"Sending an email to {emailAddress}"
+    | PhoneNumber phoneNumber -> $"Sending a text message to {phoneNumber}"
 
 (***)
 
-let coordinate1 = TwoDimensional (0.0, 0.0)
-plot coordinate1
+let none = None
+contact none
 (*** include-it ***)
 
-let coordinate2 = TwoDimensional (5.0, 3.0)
-plot coordinate2
+let email = EmailAddress "johndoe@site.com"
+contact email
+(*** include-it ***)
+
+let phone = PhoneNumber "000-123-4567"
+contact phone
 (*** include-it ***)
 
 (**
-As shown above, the constant pattern allows you to match a value against constants (numerical, character, string literal, and enum values)
+The AND pattern allows us to specify multiple patterns in a single arm that will only be evaluated if every pattern matches against the value.
 
-The value associated with a single-case discriminated union can be deconstructed into a binding using the variable pattern.
-A match expression isn't required as the union only has a single case and the variable pattern will always match against a value.
+```fsharp
+match value with
+| pattern1 & pattern2 & pattern3 -> ...
+| pattern1 & pattern2 -> ...
+```
+
+The OR pattern allows us to specify a single expression for multiple match arms.
+
+```fsharp
+match value with
+| pattern1
+| pattern2 -> ...
+```
+
+The list pattern allows us to decompose the values of a list by supplying patterns for each element.
+Here we will decompose a list using the variable pattern, a constant pattern, and the wildcard pattern.
+```fsharp
+match value with
+| [first; 2; _] -> ...
+```
+
+We can also decompose a list into its head and tail values using the CONS pattern.
+If we have a list value of `[1; 2; 3; 4; 5]` the head value would be `1` and the tail value would be `[2; 3; 4; 5]`.
 *)
 
-type String50 = String50 of string
+let value = [1; 2; 3; 4; 5]
 
-let string50 = String50 "Hello, World!"
-let (String50 value) = string50
-(*** include-fsi-output ***)
-
-(**
-Sometimes, you may want to use the variable pattern in conjunction with a conditional expression.
-We can do this with `when`
-*)
-
-let number = 50
-
-match number with
-| number when number >= 100 -> "value >= 100"
-| number when number >= 10 -> "value >= 10"
-| number -> "value = 10"
-
+match value with
+| [] -> "Empty list."
+| head::tail -> $"Head: {head}, Tail: {tail}"
 (*** include-it ***)
 
 (**
-As you can see, we bind `number` to a new name, shadowing the original, and utilize a conditional expression.
-If the expression produces a boolean value of `true`, the match arm will produce a value.
+Patterns could also be used in let bindings and function arguments.
+These patterns must be exhaustive, which means it must match all possible values of a given type.
+If we wanted to extract the value of a single-case union without matching against the value we could utilize this.
+This works because the union only has a single identifier to match against and the variable pattern will always match against a value.
+
+```fsharp
+type PositiveInteger = PositiveInteger of int
+
+// A let binding that utilizes pattern matching
+let (PositiveInteger intValue) = positiveInt
+
+// A function argument that utilizes pattern matching
+let extractIntValue (PositiveInteger intValue) = intValue
+```
+
+If the pattern isn't exhaustive then it wouldn't work.
+This could not be substituted by a list patternbecause a list could be empty or have any number of elements.
 *)
