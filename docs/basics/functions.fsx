@@ -96,8 +96,8 @@ outputNumber printNumber
 Anonymous functions aka lambda expressions are a way to define functions without explicitly naming them.
 This is often used in conjunction with higher-order functions (when passing functions as arguments to other functions).
 *)
-
-outputNumber (fun number -> printfn "%d" number)
+let output (output: string -> unit) = output "Hello, World!" 
+output (fun value -> printfn "%s" value)
 (*** include-output ***)
 
 (**
