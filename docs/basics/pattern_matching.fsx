@@ -9,7 +9,6 @@ index: 8
 
 (**
 # Pattern matching
-
 Pattern matching allows us to decompose or deconstruct values using patterns, which act as rules for their transformation.
 Pattern matching is used primarily in three ways: function arguments, let bindings, and match expressions.
 
