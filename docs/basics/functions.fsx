@@ -49,43 +49,31 @@ let thirty = getInt ()
 
 (**
 ## Currying and Function signatures
-In F#, all functions are curried.
-This means that every function has a single parameter.
-What about `let add x y = ...`, doesn't that have two parameters? 
-If we look at this function's signature, we could figure out what exactly is going on.
+In F# all functions are curried.
+Which means all multi-parameter functions are instead, single-parameter functions that return other functions.
+Let's take a look at this function signature to understand what's going on.
 *)
-let addFive x = x + 5
+
+let addFive number = number + 5
 (*** include-fsi-output ***)
 
 (**
-A function with the signature of `int -> int` means the function has a single `int` parameter
-and returns an `int` value.
+The function signature of `int -> int` indicates that a function accepts a single `int` parameter, and returns an `int` value.
+Now, let's take a look at the function signature of a multi-parameter function.
 *)
 
-let addNumbers x y = x + y
+let addNums x y = x + y
 (*** include-fsi-output ***)
 
 (**
-The signature `int -> int -> int` means the function has a single `int` parameter, and returns
-another function with the signature of `int -> int`. A multi-parameter function is just a single parameter function that returns another function.
-
-We can see this by passing one argument to the `addNumbers` function.
+The function signature of `int -> int -> int` indicates that a function accepts a single `int` parameter, and returns a new function with the signature of `int -> int`.
+Because of this, we can partially fill in parameters to a function and get back a new function with only the remaining parameters left.
+This is called partial application and is incredibly beneficial, allowing us to build new reusable functions from existing ones.
 *)
-let addFive = addNumbers 5
+let multiplyNums x y = x * y
+let doubleNum = multiplyNums 2
+doubleNum 10
 (*** include-fsi-output ***)
-
-(**
-This is called partial application. We can partially fill in parameters
-to a function and get a new function where only the remaining parameters need to be filled in.
-This allows us to build new reusable functions by partially applying parameters to existing ones.
-*)
-let fifty = addFive 45
-(*** include-fsi-output ***)
-
-(**
-Because we partially applied `5` to the `addNumbers` function. The resulting `addFive` function
-represents `5 + value`. As shown above, if we pass `45` into the `addFive` function, it would equate to `5 + 45`.
-*)
 
 (**
 ## Functions as values
