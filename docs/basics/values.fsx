@@ -74,15 +74,6 @@ result <- 4
 (*** include-value: result ***)
 
 (**
-Why are let bindings immutable by default? Immutability offers a few benefits.
-
- 1.   You can ensure that when passing a value around, it won't
-      unexpectedly change. We can stop worrying about unexpected errors
-      that would arise from shared mutable state.
-
- 2.   It's easier to reason about your code when there's no mutable state as there's
-      no need to take defensive measures to ensure safety or scan your methods for potential problems.
-
 ## Static typing
 As noted above, F# is a statically typed language which means that every value has a single type and we are unable to change that type after initialization.
 This allows us to write code with confidence as every value's type is checked at compile time and is guaranteed to be correct or our application won't compile.
