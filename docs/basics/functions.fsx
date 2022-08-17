@@ -106,7 +106,7 @@ You can create custom operators using operator functions by surrounding the oper
 Valid operator symbols include: `! $ % & * + - . / < = > ? @ ^ |`
 *)
 
-let (++) left right = left + " " + right
+let (++) left right = $"{left} {right}"
 
 "Hello" ++ "World"
 (*** include-it ***)
