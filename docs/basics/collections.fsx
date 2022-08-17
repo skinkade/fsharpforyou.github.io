@@ -50,7 +50,7 @@ let numbers = [0..10]
 
 (**
 Ranges can also have a "step amount" which dictates how many steps are taken from one element to the next.
-A range of ``[0..10]`` with a step amount of 2 will produce even numbers.
+A range of `[0..10]` with a step amount of 2 will produce even numbers.
 The first element is 0 then the next element will be 2... and so on.
 We can define a step amount by inserting it between the lower and upper bound like so:
 *)
@@ -59,7 +59,7 @@ let evenNumbers = [ 0 .. 2 .. 10 ]
 (*** include-fsi-output ***)
 
 (**
-You can use the CONS operator (``::``) to add an element to the beginning of a list.
+You can use the CONS operator (`::`) to add an element to the beginning of a list.
 As lists are immutable, any "modification" won't modify the original list, but instead will return a
 new list with the appropriate changes.
 *)
@@ -69,28 +69,28 @@ let integers2 = 0 :: integers
 
 (**
 If you wanted to append not only an element, but an entire list to the beginning of another,
-you would use the ``@`` operator instead like so:
+you would use the `@` operator instead like so:
 *)
 let integers3 = [1;2;3;4;5]
 let integers4 = integers @ [6;7;8;9;10]
 (*** include-fsi-output ***)
 
 (**
-You can use for comprehension to build a list from a ``for`` expression like so:
+You can use for comprehension to build a list from a `for` expression like so:
 *)
 let doubles = [for i in 0..10 -> i * 2]
 (*** include-fsi-output ***)
 
 (**
-This reads as: ``for`` every element in the sequence ``0..10``,
-bind the current element to the name ``i``, and yield the value ``i * 2``
+This reads as: `for` every element in the sequence `0..10`,
+bind the current element to the name `i`, and yield the value `i * 2`
 
 ### List module functions
 The list module has useful functions for working with lists.
 Some of these functions include:  
-``filter`` which will filter elements from a list using a conditional value,  
-``map`` which will map every element in a list to a new element,  
-``iter`` which allows you to call a function with every element in a list,  
+`filter` which will filter elements from a list using a conditional value,  
+`map` which will map every element in a list to a new element,  
+`iter` which allows you to call a function with every element in a list,  
 and many more.
 *)
 let nums = [0..10]
@@ -134,6 +134,6 @@ Seq.head sequence
 (*** include-fsi-output ***)
 
 (**
-As you can see from the above example, the first element of the sequence is computed as a result of calling ``Seq.head``.
-Any further call to ``Seq.head`` will use the already evaluated value. No further evaluation of the first element is required.
+As you can see from the above example, the first element of the sequence is computed as a result of calling `Seq.head`.
+Any further call to `Seq.head` will use the already evaluated value. No further evaluation of the first element is required.
 *)

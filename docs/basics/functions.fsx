@@ -27,12 +27,12 @@ let twoAndThree = addToTuple (1,2) 1
 (*** include-fsi-output ***)
 
 (**
-Notice than in F# function parameters are seperated by whitespace instead of commas.
+Notice that in F#, function parameters are separated by whitespace instead of commas.
 *)
 
 (**
 Optionally, you can add type annotations to a function parameter by surrounding the parameter with parenthesis and annotating it with the desired type.
-The type annotation preceding the ``=`` is the return type of the function.
+The type annotation preceding the `=` is the return type of the function.
 *)
 let divide (left: int) (right: int) : int = left / right
 let four = divide 8 2
@@ -40,7 +40,7 @@ let four = divide 8 2
 
 (**
 Some functions won't take in a specific parameter but instead will have a unit parameter.
-This acts as a zero parameter function.
+This acts as a zero-parameter function.
 *)
 
 let getInt () = 30
@@ -49,45 +49,43 @@ let thirty = getInt ()
 
 (**
 ## Currying and Function signatures
-In F#, all functions are curried.
-This means that every function has a single parameter.
-What about ``let add x y = ...``, doesn't that have two parameters? 
-If we look at this function's signature, we could figure out what exactly is going on.
+In F# all functions are curried.
+Which means all multi-parameter functions are instead, single-parameter functions that return other functions.
+Let's take a look at this function signature to understand what's going on.
 *)
-let addNumbers x y = x + y
+
+let addFive number = number + 5
 (*** include-fsi-output ***)
 
 (**
-As you can see from the above example, the function signature is ``int -> int -> int``.
-What does this mean? A function with the signature of ``int -> int`` means the function has a single ``int`` parameter
-and returns an ``int`` value. The signature ``int -> int -> int`` means the function has a single ``int`` parameter, and returns
-another function with the signature of ``int -> int``. Functions with "multiple parameters" are instead functions with a single parameter
-that return other functions.
-
-We can see this by passing one argument to the ``addNumbers`` function.
+The function signature of `int -> int` indicates that a function accepts a single `int` parameter, and returns an `int` value.
+Now, let's take a look at the function signature of a multi-parameter function.
 *)
-let addFive = addNumbers 5
+
+let addNums x y = x + y
 (*** include-fsi-output ***)
 
 (**
-This is called partial application.
-We can partially fill in parameters to a function and get a new function where only the remaining parameters need to be filled in.
-This allows us to build new reusable functions from existing functions as shown above.
+The function signature of `int -> int -> int` indicates that a function accepts a single `int` parameter, and returns a new function with the signature of `int -> int`.
+Because of this, we can partially fill in parameters to a function and get back a new function with only the remaining parameters left.
+This is called partial application and is incredibly beneficial, allowing us to build new reusable functions from existing ones.
 *)
-let fifty = addFive 45
+let multiplyNums x y = x * y
+let doubleNum = multiplyNums 2
+doubleNum 10
 (*** include-fsi-output ***)
 
 (**
-## Passing functions around
+## Functions as values
 Higher order functions are functions that accept functions as parameters or return functions.
 This can be very useful for abstracting away the implementation of a function (dynamic implementation).
 
-Here we will define a function named ``outputParameter`` that will accept another function as a parameter.
+Here we will define a function named `outputNumber` that will accept another function as a parameter.
 *)
 let outputNumber (output: int -> unit) = output 10 
 
 (**
-Because ``printfn "%d"`` returns a function with the signature of ``int -> unit``, we can pass it to the ``outputNumber`` function.
+Because `printfn "%d"` returns a function with the signature of `int -> unit`, we can pass it to the `outputNumber` function.
 *)
 let printNumber = printfn "%d"
 outputNumber printNumber
@@ -98,6 +96,27 @@ outputNumber printNumber
 Anonymous functions aka lambda expressions are a way to define functions without explicitly naming them.
 This is often used in conjunction with higher-order functions (when passing functions as arguments to other functions).
 *)
-
-outputNumber (fun number -> printfn "%d" number)
+let output (output: string -> unit) = output "Hello, World!" 
+output (fun value -> printfn "%s" value)
 (*** include-output ***)
+
+(**
+## Operator functions
+You can create custom operators using operator functions by surrounding the operator symbols with parenthesis.  
+Valid operator symbols include: `! $ % & * + - . / < = > ? @ ^ |`
+*)
+
+let (++) left right = $"{left} {right}"
+
+"Hello" ++ "World"
+(*** include-it ***)
+
+(**
+The above operator is in `infix` form which means the operator gets placed between the two arguments.  
+You can create a unary operator, which is placed before a single parameter, by prefixing the operator symbols with `~`. 
+*)
+
+let (~+.) number = number * number + number
+
++.2.0
+(*** include-it ***)
