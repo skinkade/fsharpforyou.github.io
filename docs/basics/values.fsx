@@ -102,10 +102,23 @@ but here has type
 
 ## Indentation Awareness
 F# relies on the level of indentation to determine the beginning and the end of an expression.
-Consistency is key, once a new indentation offset is created, every following expression must be aligned with that offset.
+Consistency is key, once a new indentation offset is created, every following expression in the current body must be aligned with that offset.
 *)
 
 let twenty =
     let ten = 10
     ten + ten
 (*** include-fsi-output ***)
+
+(**
+This code will result in a compiler error:
+```fsharp
+let twenty =
+    let ten = 10
+        ten + ten
+```
+```text
+Incomplete value or function definition.
+If this is in an expression, the body of the expression must be indented to the same column as the 'let' keyword.
+```
+*)
