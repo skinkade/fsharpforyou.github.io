@@ -456,3 +456,6 @@ $RECYCLE.BIN/
 .fsdocs
 tmp
 output/
+
+# Ignore local builds.
+fsharpforyou/_build
