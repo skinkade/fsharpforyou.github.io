@@ -2,3 +2,49 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
+root: why_fsharp
+parts:
+  - caption: Introduction
+    numbered: true
+    chapters:
+      - file: chapters/introduction/intro.md
+        sections:
+          - file: chapters/introduction/installing.md
+          - file: chapters/introduction/your_first_script.md
+  - caption: Basics
+    numbered: true
+    chapters:
+      - file: chapters/basics/basics.md
+        sections:
+          - file: chapters/basics/values_expressions_and_types.md
+          - file: chapters/basics/let_bindings.md
+          - file: chapters/basics/functions.md
+          - file: chapters/basics/indentation_awareness.md
+          - file: chapters/basics/higher_order_functions.md
+          - file: chapters/basics/anonymous_functions.md
+          - file: chapters/basics/operators.md
+          - file: chapters/basics/conditional_expressions.md
+          - file: chapters/basics/product_types.md
+          - file: chapters/basics/sum_types.md
+          - file: chapters/basics/lists.md
+          - file: chapters/basics/loops.md
+          - file: chapters/basics/list_comprehensions.md
+          - file: chapters/basics/currying.md
+          - file: chapters/basics/partial_application.md
+          - file: chapters/basics/piping.md
+          - file: chapters/basics/pattern_matching.md
+          - file: chapters/basics/modules.md
+          - file: chapters/basics/generics.md
+          - file: chapters/basics/sequences.md
+  - caption: Advanced
+    numbered: true
+    chapters:
+      - file: chapters/advanced/advanced.md
+        sections:
+          - file: chapters/advanced/recursive_functions.md
+  - caption: Testing
+    numbered: true
+    chapters:
+      - file: chapters/testing/testing.md
+        sections:
+          - file: chapters/testing/why_test.md
