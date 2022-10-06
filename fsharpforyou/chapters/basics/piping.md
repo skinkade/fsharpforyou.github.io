@@ -32,8 +32,10 @@ let result = double ten
 
 We can improve this code by composing these functions using the pipe operator.
 The pipe operator allows us to pass a value into a single parameter function.
-Because the `add` function has two parameters,
-we have to partially apply a parameter to the `add` function to produce a function that results in an `int` value.
+
+Because the `add` function has "two" parameters, we partially apply a parameter
+to the `add` function to produce a function that results in an `int` value when given
+a single input.
 
 ```fsharp
 let result =

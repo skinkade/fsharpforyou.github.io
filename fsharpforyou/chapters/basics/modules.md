@@ -12,9 +12,9 @@ Accessibility modifiers can restrict access to code within modules.
 The default accessibility is `public` unless otherwise specified.
 This means other modules can freely use your module's types and functions.
 
-Other accessibility modifiers include:
-`private` which restricts usage to the containing module and
-`internal` which restricts usage to the containing assembly.
+Other accessibility modifiers include:  
+`private` which restricts usage to the containing module and  
+`internal` which restricts usage to the containing assembly.  
 
 ```fsharp
 module Math =
@@ -25,7 +25,7 @@ module Math =
     //  ^^^^^^^ private modifier
 
 module Operations =
-    // I can't use the divide function here.
+    // We can't use the divide function here.
 ```
 
 To use another module's functions or types, you can import them with `open`.
@@ -52,4 +52,6 @@ In certain cases, it's beneficial to require qualified access of a function or t
 [<RequireQualifiedAccess>]
 module List =
     let double (list: int list) = list |> List.map (fun elem -> elem * 2)
+
+let doubled = List.double [1..10]
 ```

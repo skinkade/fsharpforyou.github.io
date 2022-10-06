@@ -30,7 +30,6 @@ parts:
           - file: chapters/basics/loops.md
           - file: chapters/basics/list_comprehensions.md
           - file: chapters/basics/currying.md
-          - file: chapters/basics/partial_application.md
           - file: chapters/basics/piping.md
           - file: chapters/basics/pattern_matching.md
           - file: chapters/basics/modules.md

@@ -12,6 +12,7 @@ output (printfn "%s")
 Because `printfn %s` has a signature of `string -> unit`, it can be passed as a parameter to the output function.
 The output function would then call that passed-in function with a parameter of `"Hello World"`.
 
-This technique allows you to dynamically call a function with the desired value.
-This function can be replaced to perform differing operations.
-I can pass in a function to print to the console, output to a file, or any other desired operation.
+A higher order function defines a contract which can be fulfilled by any function with matching signatures.
+This may be useful when you want to swap out the implementation details of a function with another at runtime.
+Instead of printing to the console, I could instead write to a file, or a cache, or send an http request, etc ... 
+All without having to worry about the specific implementation details of the passed in function.

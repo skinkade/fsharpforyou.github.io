@@ -8,15 +8,25 @@ Let's take a look at this function signature.
 let addFive x = x + 5
 ```
 
-This signature indicates that the function has a single int parameter and returns a single int value. The left-hand side of the `->` represents the input and the right-hand side represents the output.
+The left-hand side of the `->` represents the input and the right-hand side represents the output.
+This signature indicates that the function has a single int value as input and a single int value as output.
 
-Now let's take a look at the function signature of a "two parameter" function.
+Let's take a look at another function signature.
 
 ```fsharp
-// int -> (int -> int)
+// int -> int -> int
 let add x y = x + y
 ```
 
-This signature indicates that the function has a single int parameter, and returns a new function with the signature of `int -> int`
-
+This signature indicates that the function has a single int parameter as input, and returns a new function with the signature of `int -> int`.
 Functions with "multiple parameters" are instead single parameter functions that return new functions.
+
+To demonstrate currying, we can _partially apply_ a single parameter to the `add` function.
+The type of the resulting value will be `int -> int`, indicating that a new function has been produced.
+
+```fsharp
+let add x y = x + y
+let addFive = add 5 // int -> int
+```
+
+This technique allows us to build up new functions by partially applying parameters to existing ones.
