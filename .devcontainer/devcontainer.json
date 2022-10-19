@@ -1,0 +1,10 @@
+{
+	"name": "python",
+	"context": "..",
+	"dockerFile": "Dockerfile",
+	"forwardPorts": [],
+	"extensions": [
+		"ms-python.python",
+		"arr.marksman"
+	]
+}
