@@ -43,4 +43,22 @@ let rec fold (folder: 'State -> 'T -> 'State) (state: 'State) (elems: 'T list) =
 
         // call this function recursively with the new state, and the subsequent elements.  
         fold folder newState xs
+
+let res = fold (+) 0 [0..10]
+// ...
+```
+
+Most recursive functions follow the same pattern. Apply a function to each element within a sequence, and pass either the result of the computation, the subsequence elements, or both, into the function recursively.
+
+```fsharp
+let rec forEach (f: 'a -> unit) (list: 'a list) =
+    match list with
+    | [] -> ()
+    | x :: xs ->
+        f x
+
+        // only pass the subsequent elements recursively.
+        forEach f xs
+
+forEach (printfn "%d") [0..10]
 ```
