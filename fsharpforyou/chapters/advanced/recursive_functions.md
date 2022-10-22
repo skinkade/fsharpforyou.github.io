@@ -2,28 +2,45 @@
 
 Recursive functions are functions that can call themselves recursively. One useful example of recursive functions is defining functions that declaratively iterate over elements of a sequence, such as a list.
 
-```fsharp
-let rec forEach (f: 'a -> unit) (list: 'a list) =
-    match list with
-    | [] -> ()
-    | x :: xs ->
-        f x
-        forEach f xs
-//      ^^^^^^^^^^^^ call this function recursively with the tail of the list
+Let's look at an example of a recursive function that exists in the standard library.
+
+```fs
+let nums = [0..10]
+let sum = List.fold (+) 0 nums
 ```
 
-```fsharp
-let rec map (f: 'a -> 'b) (list: 'a list) =
-    match list with
-    | [] -> []
-    | x :: xs -> f x :: map f xs
-```
+The fold function is made up of 3 parts:
+A `folder` which is a function that takes a `state` value and the current element in the `collection`. After function application, a new state value will be returned, which is then used for the subequent item in the collection. This is repeated until there are no more elements in the collection to process and the state value is returned.
+
+`folder: (+)`  
+`state: 0`  
+`list: [0..10]`
+
+1st iteration:  
+`first element in the list: 0`  
+`op: (+) 0 0`  
+`new state: 0` 
+
+2nd iteration:  
+`second element in the list: 1`  
+`op: (+) 0 1`  
+`new state: 1`
+
+and so on...
+
+Now that you hopefully understand how `List.fold` works, let's implement this ourselves using recursion.
 
 ```fsharp
-let rec fold (f: 'State -> 'a -> 'State) (state: 'State) (list: 'a list) =
-    match list with
-    | [] -> state
+// notice the "rec" keyword here.
+let rec fold (folder: 'State -> 'T -> 'State) (state: 'State) (elems: 'T list) =
+    match elems with
+    | [] ->
+        // if the list is empty, return the state.
+        state
     | x :: xs ->
-      let newState = f state x
-      fold f newState xs
+        // Apply the folder to the current element and the current state.
+        let newState = folder state x
+
+        // call this function recursively with the new state, and the subsequent elements.  
+        fold folder newState xs
 ```
