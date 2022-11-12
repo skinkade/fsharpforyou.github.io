@@ -4,47 +4,69 @@
 format: jb-book
 root: why_fsharp
 parts:
-  - caption: Introduction
-    numbered: true
+  - caption: Learning the language
     chapters:
-      - file: chapters/introduction/intro.md
+      - file: chapters/learning_the_language/introduction/cover.md
         sections:
-          - file: chapters/introduction/installing.md
-          - file: chapters/introduction/your_first_script.md
-  - caption: Basics
-    numbered: true
-    chapters:
-      - file: chapters/basics/basics.md
+        - file: chapters/learning_the_language/introduction/installing.md
+        - file: chapters/learning_the_language/introduction/your_first_script.md
+
+      - file: chapters/learning_the_language/basics/cover.md
         sections:
-          - file: chapters/basics/values_expressions_and_types.md
-          - file: chapters/basics/let_bindings.md
-          - file: chapters/basics/functions.md
-          - file: chapters/basics/indentation_awareness.md
-          - file: chapters/basics/higher_order_functions.md
-          - file: chapters/basics/anonymous_functions.md
-          - file: chapters/basics/operators.md
-          - file: chapters/basics/conditional_expressions.md
-          - file: chapters/basics/product_types.md
-          - file: chapters/basics/sum_types.md
-          - file: chapters/basics/lists.md
-          - file: chapters/basics/loops.md
-          - file: chapters/basics/list_comprehensions.md
-          - file: chapters/basics/currying.md
-          - file: chapters/basics/piping.md
-          - file: chapters/basics/pattern_matching.md
-          - file: chapters/basics/modules.md
-          - file: chapters/basics/generics.md
-          - file: chapters/basics/sequences.md
-  - caption: Advanced
-    numbered: true
-    chapters:
-      - file: chapters/advanced/advanced.md
+          - file: chapters/learning_the_language/basics/values_expressions_and_types.md
+          - file: chapters/learning_the_language/basics/let_bindings.md
+          - file: chapters/learning_the_language/basics/functions.md
+          - file: chapters/learning_the_language/basics/indentation_awareness.md
+          - file: chapters/learning_the_language/basics/top_down_evaluation.md
+          - file: chapters/learning_the_language/basics/operators.md
+          - file: chapters/learning_the_language/basics/conditional_expressions.md
+
+      - file: chapters/learning_the_language/collections/cover.md
         sections:
-          - file: chapters/advanced/active_patterns.md
-          - file: chapters/advanced/recursive_functions.md
-  - caption: Testing
-    numbered: true
-    chapters:
-      - file: chapters/testing/testing.md
+        - file: chapters/learning_the_language/collections/lists.md
+        - file: chapters/learning_the_language/collections/sequences.md
+        - file: chapters/learning_the_language/collections/maps.md
+        - file: chapters/learning_the_language/collections/loops.md
+        - file: chapters/learning_the_language/collections/list_comprehensions.md
+
+      - file: chapters/learning_the_language/representing_data/cover.md
         sections:
-          - file: chapters/testing/why_test.md
+        - file: chapters/learning_the_language/representing_data/tuples.md
+        - file: chapters/learning_the_language/representing_data/type_aliases.md
+        - file: chapters/learning_the_language/representing_data/records.md
+        - file: chapters/learning_the_language/representing_data/discriminated_unions.md
+        - file: chapters/learning_the_language/representing_data/generic_types.md
+        - file: chapters/learning_the_language/representing_data/the_option_type.md
+        - file: chapters/learning_the_language/representing_data/the_result_type.md
+
+      - file: chapters/learning_the_language/modules/cover.md
+        sections:
+        - file: chapters/learning_the_language/modules/creating_a_module.md
+        - file: chapters/learning_the_language/modules/importing_modules.md
+        - file: chapters/learning_the_language/modules/accessibility_modifiers.md
+
+      - file: chapters/learning_the_language/object_programming/cover.md
+        sections:
+        - file: chapters/learning_the_language/object_programming/classes_and_members.md
+        - file: chapters/learning_the_language/object_programming/interfaces_and_abstract_classes.md
+        - file: chapters/learning_the_language/object_programming/object_expressions.md
+
+      - file: chapters/learning_the_language/pattern_matching/cover.md
+        sections:
+        - file: chapters/learning_the_language/pattern_matching/active_patterns.md
+
+      - file: chapters/learning_the_language/function_composition/cover.md
+        sections:
+        - file: chapters/learning_the_language/function_composition/higher_order_functions.md
+        - file: chapters/learning_the_language/function_composition/anonymous_functions.md
+        - file: chapters/learning_the_language/function_composition/currying.md
+        - file: chapters/learning_the_language/function_composition/partial_application.md
+        - file: chapters/learning_the_language/function_composition/piping.md
+        - file: chapters/learning_the_language/function_composition/function_combination.md
+
+      - file: chapters/learning_the_language/diving_deeper/cover.md
+        sections:
+        - file: chapters/learning_the_language/diving_deeper/recursive_functions.md
+        - file: chapters/learning_the_language/diving_deeper/inline_functions.md
+        - file: chapters/learning_the_language/diving_deeper/srtp.md
+        - file: chapters/learning_the_language/diving_deeper/async_programming.md

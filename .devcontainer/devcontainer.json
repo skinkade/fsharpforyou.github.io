@@ -1,5 +1,5 @@
 {
-	"name": "python",
+	"name": "fsharpforyou-devcontainer",
 	"context": "..",
 	"dockerFile": "Dockerfile",
 	"forwardPorts": [],

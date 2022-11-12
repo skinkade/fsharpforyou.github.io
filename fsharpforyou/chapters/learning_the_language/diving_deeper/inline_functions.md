@@ -1,0 +1,3 @@
+# Inline Functions
+
+COMING SOON
