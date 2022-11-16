@@ -27,7 +27,7 @@ parts:
         - file: chapters/learning_the_language/collections/sequences.md
         - file: chapters/learning_the_language/collections/maps.md
         - file: chapters/learning_the_language/collections/loops.md
-        - file: chapters/learning_the_language/collections/list_comprehensions.md
+        - file: chapters/learning_the_language/collections/sequence_expressions.md
 
       - file: chapters/learning_the_language/representing_data/cover.md
         sections:

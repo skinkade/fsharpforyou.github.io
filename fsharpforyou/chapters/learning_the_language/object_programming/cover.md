@@ -1,9 +1,5 @@
 # Object Programming
 
-What I need to cover:
-1. Classes
-2. Interfaces
-3. Abstract Classes
-4. Members
-5. do bindings
-6. `self` and `this` identifiers
+1. [Classes and Members](classes_and_members.md)
+2. [Interfaces and Abstract Classes](interfaces_and_abstract_classes.md)
+3. [Object Expressions](object_expressions.md)
