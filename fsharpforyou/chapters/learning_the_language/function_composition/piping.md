@@ -16,7 +16,7 @@ x
 |> f
 ```
 
-Another way of demonstrating this, is to define our own `|>` operator.
+Another way of demonstrating this is to define our own `|>` operator.
 
 ```fsharp
 let inline (|>) value func = func value
@@ -41,7 +41,7 @@ The pipe operator allows us to pass a value into a single parameter function.
 
 Because the `add` function has a signature of `int -> int -> int`,
 we can partially apply a single parameter to the add function to produce a `int -> int` function.
-Piping a single value into this new function, will produce an `int` result.
+Piping a single value into this new function will produce an `int` result.
 
 ```fsharp
 let result =
