@@ -1,6 +1,6 @@
 # Object Expressions
 
-An object expressions allows us to create an anonymous object from an existing base type, or interface/abstract class.
+An object expression allows us to create an anonymous object from an existing base type, or interface/abstract class.
 
 ```fsharp
 type IDrawable =

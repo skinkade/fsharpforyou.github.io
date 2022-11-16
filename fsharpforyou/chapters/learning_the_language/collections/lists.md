@@ -72,4 +72,4 @@ List.iter printNum nums
 //        ^^^^^^^^ the function to apply to each element.
 ```
 
-The `List` module contains **many** functions all with a similar signatures and effects to the ones listed above.
+The `List` module contains **many** functions all with similar signatures and effects to the ones listed above.

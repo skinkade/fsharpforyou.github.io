@@ -20,4 +20,4 @@ let add x y = x + y
 ```
 
 This signature indicates that the function has a single int parameter as input, and returns a new function with the signature of `int -> int`.
-Functions with "multiple parameters" are instead single parameter functions that return a series of _other_ single parameter functions.
+Functions with "multiple parameters" are instead single-parameter functions that return a series of _other_ single-parameter functions.

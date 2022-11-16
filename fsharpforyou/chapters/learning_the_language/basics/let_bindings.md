@@ -12,7 +12,7 @@ From left to right, this reads as: `let` the name `ten` be bound to the value `1
 The type of `ten` will be an `int`.
 
 We usually don't have to specify types as the compiler will infer them from their usage.
-In this case, `10` is inferred as an integer although it can easily be a number of other numerical types.
+In this case, `10` is inferred as an integer although it can easily be several other numerical types.
 If the compiler doesn't have enough information to infer your desired type, you can add a type annotation to override it.
 
 ```fsharp

@@ -1,9 +1,9 @@
 # Maps
 
-Maps represent an immutable sequence of key value pairs in tuple form.
+Maps represent an immutable sequence of key-value pairs in tuple form.
 
 To start, let's construct an empty map and add values to it one by one.
-Because maps are immutable, after adding each key value pair, we will get back a new map with the appropriate additions.
+Because maps are immutable, after adding each key-value pair, we will get back a new map with the appropriate additions.
 
 ```fsharp
 let map = Map.empty
@@ -12,7 +12,7 @@ let map2 = Map.add 2 "Hello, World" map1
 printfn "%A" map2 // [(1, "Hello, World"); (2, "Hello, World")]
 ```
 
-You can also construct a map from a sequence or list of key value pairs.
+You can also construct a map from a sequence or list of key-value pairs.
 
 ```fsharp
 let mapFromSequence =

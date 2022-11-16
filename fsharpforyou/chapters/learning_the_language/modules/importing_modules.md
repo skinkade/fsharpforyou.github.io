@@ -18,7 +18,7 @@ let product = Math.multiply 10 3
 
 ```
 
-In certain cases, it's beneficial to require qualified access of a function or type.
+In certain cases, it's beneficial to require qualified access to a function or type.
 Especially when dealing with modules that are named after types that contain functions operating on them.
 A good example of this is the `List` module.
 

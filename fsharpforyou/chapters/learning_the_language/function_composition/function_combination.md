@@ -1,7 +1,7 @@
 # Function Combination
 
 Function combination, or simply, composition, is the act of chaining multiple functions together to form a new, larger workflow.
-We can achieve this by combining multiple functions together such as `f` and `g` are composed to create a new function which resembles: `f(g(5))`
+We can achieve this by combining multiple functions such as `f` and `g` are composed to create a new function that resembles: `f(g(5))`
 
 We can achieve this using the composition (`>>`) operator.
 

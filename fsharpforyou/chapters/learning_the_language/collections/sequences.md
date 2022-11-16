@@ -11,7 +11,7 @@ seq { 1; 2; 3; 4; 5; 6; 7; 8; 9; 10 }
 ```
 
 The sequence module, like the list module, includes helper functions for manipulating sequences in certain ways.
-Many of these functions are also present in the list module, such as: `map`, `filter`, `head`, ...
+Many of these functions are also present in the list module, such as `map`, `filter`, `head`, etc...
 
 ```fsharp
 let double x = x * 2

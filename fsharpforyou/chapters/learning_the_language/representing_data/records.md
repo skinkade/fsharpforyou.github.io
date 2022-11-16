@@ -15,7 +15,7 @@ We can define a record value, by supplying each named member with a value like s
 let person = { FirstName = "John"; LastName = "Doe"; Age = 25 }
 ```
 
-Records are immutable. After a record value is constructed, we connot modifier its members.
+Records are immutable. After a record value is constructed, we can not modify the values of its members.
 Instead, we can update individual members of a record value using the _copy and update_ expression.
 
 ```fsharp

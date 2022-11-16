@@ -3,7 +3,7 @@
 The result type allows you to represent success and failure states within your application
 and the option type allows you to represent optional values.
 
-Result and Option are defined as follows:
+The result and option types are defined as follows:
 
 ```fsharp
 type Result<'success, 'error> =
@@ -26,7 +26,7 @@ let nothing = None // 'a option <-- can't infer the type parameter yet.
 ```
 
 The result and option module contains useful functions for working with these values.
-Two of these are `bind` and `map` which are transformer functions, transforming the inner result or option value.
+Two of these are `bind` and `map` which transform the inner result or option value.
 
 ```fsharp
 let success = Ok 10 // Result<int, 'a>
@@ -62,4 +62,4 @@ let success' = Ok "150"
 let successAsInt' = Result.bind stringToIntConstrained success' // Error "number is greater then 100"
 ```
 
-You can think of `Result` and `Option` as a context. The `bind` and `map` functions extract the happy (`Ok` or `Some`) value from that context, transform it with a transforming function, and yield a new value of the same context. The difference between `bind` and `map` are the transformer functions. `map`'s transformer functions simply transforms `'a` to `'b` while `bind`'s transformer function rewraps the value into the context, ex: `'a -> Result<'b, 'error>`.
+You can think of `Result` and `Option` as a context. The `bind` and `map` functions extract the happy (`Ok` or `Some`) value from that context, transform it with a transforming function, and yield a new value of the same context. The difference between `bind` and `map` is the transformer functions. `map`'s transformer functions simply transform `'a` to `'b` while `bind`'s transformer function rewraps the value into the context, ex: `'a -> Result<'b, 'error>`.

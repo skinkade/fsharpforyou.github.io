@@ -1,9 +1,9 @@
 # Classes and Members
 
-F#, being a multi-paradigm language, has support for object-programming.
+F#, being a multi-paradigm language, has support for object programming.
 
 Classes are a way of encapsulating data and behavior and can inherit or implement behavior from other classes/interfaces.
-Members are functions or values that exist on an instance of an object. These members are what encapsulates data and behavior in F#
+Members are functions or values that exist on an instance of an object. These members are what encapsulate data and behavior in F#
 
 Let's start off with the basics. First, we can define a `type Person` that is constructed with `firstName` and `lastName` parameters.
 
@@ -19,7 +19,7 @@ type Person(firstName: string, lastName: string) =
     member val LastName = lastName with get
 ```
 
-Finally, we can construct an instance of the type person by supplying it the desired `firstName` and `lastName` values.
+Finally, we can construct an instance of the type person by supplying it with the desired `firstName` and `lastName` values.
 
 ```fsharp
 let person = Person("John", "Doe")
@@ -27,7 +27,7 @@ person.FirstName // "John"
 ```
 
 Classes can also encapsulate behavior (functions!).
-These are a bit different then let bindings, as they usually are uncurried and exist on instances of a class.
+These are a bit different than let bindings, as they usually are uncurried and exist on instances of a class.
 
 ```fsharp
 type Person(firstName: string, lastName: string) =

@@ -36,7 +36,7 @@ let (++) word1 word2 = sprintf "%s %s" word1 word2
 "Hello" ++ "World" // "Hello World"
 ```
 
-Because operators are simply functions. They can also be called like other functions.
+Because operators are simply functions. They can also be called just like traditional functions.
 Take the `+` operator for example:
 
 ```fsharp

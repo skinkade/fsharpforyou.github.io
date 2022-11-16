@@ -20,4 +20,4 @@ let inline add (x: ^A) (y: ^B): ^C
 What's going on here? First, we define 3 statically resolved type parameters: `^A`, `^B`, and `^C`.
 Next, we require that either `^A` or `^B` has a `static member` named `(+)` that matches the signature of `^A * ^B -> ^C`.
 
-Why do we do this? Well.. since these type parameters are resolved at compile time, to be able to invoke `a + b`, we have to ensure this operator actually exists to apply the function call. After all... operators are just regular old functions.
+Why do we do this? Well.. since these type parameters are resolved at compile time, to be able to invoke `a + b`, we have to ensure this operator exists to apply the function call. After all... operators are just regular old functions.

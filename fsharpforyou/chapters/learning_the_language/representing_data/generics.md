@@ -18,7 +18,7 @@ type Option<'a> =
 
 The `'a` in the above definition denotes a generic type parameter.
 If you wanted to define two generic type parameters you could use `'a` and `'b`.
-Sometimes, context specific names are more appropriate choices, such as `'success` and `'error`, to model success and error types.
+Sometimes, context-specific names are more appropriate choices, such as `'success` and `'error`, to model success and error types.
 
 This option can be an `Option<string>`, `Option<int>`, `Option<float>`, ... etc.
 The generic type parameter is passed in (or inferred) when a value of the type is created.

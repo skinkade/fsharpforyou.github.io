@@ -11,7 +11,7 @@ let sum = List.fold (+) 0 nums
 ```
 
 The fold function is made up of 3 parts:
-A `folder` which is a function that takes a `state` value and a `collection` of elements. The folder function is then applied using the current element in the list and the current state. After function application, a new state value will be returned, which is then used for the subequent item in the collection. This is repeated until there are no more elements in the collection to process and the state value is returned.
+A `folder` which is a function that takes a `state` value and a `collection` of elements. The folder function is then applied using the current element in the list and the current state. After the function application, a new state value will be returned, which is then used for the subsequent item in the collection. This is repeated until there are no more elements in the collection to process and the state value is returned.
 
 `folder: (+)`  
 `state: 0`  

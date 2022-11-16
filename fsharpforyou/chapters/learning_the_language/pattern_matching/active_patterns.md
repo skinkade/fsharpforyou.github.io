@@ -23,7 +23,7 @@ match person with
 ```
 
 We can also use active patterns to deconstruct values.
-Here we will define an active pattern to deconstruct a color into it's ARGB (alpha, red, green, blue) values.
+Here we will define an active pattern to deconstruct a color into its ARGB (alpha, red, green, blue) values.
 
 ```fsharp
 open System.Drawing

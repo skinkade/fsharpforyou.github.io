@@ -9,7 +9,7 @@ for elem in nums do
     printfn $"{elem}"
 ```
 
-The for expression accepts a pattern for each element in the sequence.
+The `for` expression accepts a pattern for each element in the sequence.
 In this instance we're supplying `elem`, utilizing the variable pattern, which binds a value to a name.
 If we wanted to deconstruct a value, we could supply an alternative pattern.
 Here we will demonstrate this with a list of tuple values.
