@@ -35,7 +35,7 @@ parts:
         - file: chapters/learning_the_language/representing_data/type_aliases.md
         - file: chapters/learning_the_language/representing_data/records.md
         - file: chapters/learning_the_language/representing_data/discriminated_unions.md
-        - file: chapters/learning_the_language/representing_data/generic_types.md
+        - file: chapters/learning_the_language/representing_data/generics.md
         - file: chapters/learning_the_language/representing_data/the_result_and_option_types.md
 
       - file: chapters/learning_the_language/modules/cover.md
