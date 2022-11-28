@@ -32,12 +32,11 @@ You can define operator functions by surrounding the operator symbols with paren
 Valid operator symbols include: `!`, `$`, `%`, `&`, `*`, `+`, `-`, `.`, `/`, `<`, `=`, `>`, `?`, `@`, `^`, `|`.
 
 ```fsharp
-let (++) word1 word2 = sprintf "%s %s" word1 word2
+let (++) word1 word2 = $"{word1} {word2}"
 "Hello" ++ "World" // "Hello World"
 ```
 
-Because operators are simply functions. They can also be called just like traditional functions.
-Take the `+` operator for example:
+Because operators are simply functions. They can also be called just like traditional functions (in prefix instead of infix form). Take the `+` operator for example:
 
 ```fsharp
 let result = (+) 5 10 // equivalent to: 5 + 10
