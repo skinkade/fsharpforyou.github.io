@@ -28,3 +28,11 @@ let ten = 5 + 5
 
 By default, let bindings are immutable. This means we can't change their values after creation.
 Immutability is preferred as it ensures that values won't be changed unexpectedly and results in code that's easier to reason about.
+
+Let bindings can also span multiple lines thanks to the expression-oriented nature of F#:
+
+```fsharp
+let ten =
+    let five = 5
+    five + five
+```
