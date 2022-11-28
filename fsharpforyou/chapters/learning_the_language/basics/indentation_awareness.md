@@ -1,28 +1,25 @@
 # Indentation Awareness
 
-F# relies heavily on indentation levels to determine the start and end of an expression. 
-A general rule of thumb is: be consistent with the level of indentation within a block.
-
-For example, this code would compile as the indentation levels clearly indicate the beginning and end of the expression.
+F# relies on the level of indentation to discern the beginning and end of an expression.
 
 ```fsharp
-let ten =
-    let five = 5
-    five + five
+let addTen num =
+    let ten = 10 // <---
+    ten + num    // <---
+                 // this block has consistent indentation levels.
+
+let result =
+    addTen 5 // 15
 ```
 
-However, this code wouldn't compile as the compiler can't determine the value of `ten` as the block isn't indented at all.
+Here, the compiler can discern the beginning and end of the `addTen` function and `result` let binding. Both are indented consistently with 4 spaces and are terminated by the subsequent non-indented expression. A general rule of thumb is: to be consistent with the level of indentation in a block. Inconsistent indentation levels in a block will result in a compiler error.
 
 ```fsharp
-let ten =
-let five = 5
-five + five
+let addTen num =
+    let ten = 10
+   ten + num
+// ^^^^^^^^^
+// inconsistent indentation in the function body.
 ```
 
-This code also won't compile as the indentation levels are misaligned.
-
-```fsharp
-let ten =
-    let five = 5
-   five + five
-```
+Because the last expression of a block acts as the return value, the compiler will see that the `addTen` function isn't a completed block as it can't discern the return value.
