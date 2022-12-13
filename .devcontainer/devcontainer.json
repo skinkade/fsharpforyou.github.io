@@ -5,6 +5,7 @@
 	"forwardPorts": [],
 	"extensions": [
 		"ms-python.python",
-		"arr.marksman"
+		"arr.marksman",
+		"znck.grammarly"
 	]
 }
