@@ -52,6 +52,11 @@ parts:
 
       - file: chapters/learning_the_language/pattern_matching/cover.md
         sections:
+        - file: chapters/learning_the_language/pattern_matching/introduction.md
+        - file: chapters/learning_the_language/pattern_matching/match_expressions.md
+        - file: chapters/learning_the_language/pattern_matching/the_record_pattern.md
+        - file: chapters/learning_the_language/pattern_matching/the_identifier_pattern.md
+        - file: chapters/learning_the_language/pattern_matching/list_patterns.md
         - file: chapters/learning_the_language/pattern_matching/active_patterns.md
 
       - file: chapters/learning_the_language/function_composition/cover.md
