@@ -27,5 +27,9 @@ The generic type parameter is passed in (or inferred) when a value of the type i
 let intOption = Some 10 // Option<int>
 let stringOption = Some "Hello, World!" // Option<string>
 let floatOption: Option<float> = None
+//               ^^^^^^^^^^^^^
+// here we annotate the type because the compiler can't
+// infer the generic type parameter of a `None` value
+// as it has no data associated with it.
 ```
 
