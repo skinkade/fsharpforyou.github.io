@@ -1,7 +1,7 @@
 # Functions
 
 Functions are the primary unit of execution of any program.
-Functions act as a black box of transformation, you give a function input and it's transformed into an output. An example of this would be a `double` function that transforms `2` to `4`, `4` to `8`, `8` to `16`, and so on.
+Functions act as a black box of transformation, you give a function an input and it's transformed into an output. An example of this would be a `double` function that transforms `2` into `4`, `4` into `8`, `8` into `16`, and so on.
 
 You can define functions by using the `let` syntax and defining a name and a list of parameters one after another separated by a space.
 These parameters will be passed into the function when it's called.
