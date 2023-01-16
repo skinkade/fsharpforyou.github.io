@@ -1,6 +1,7 @@
 # Indentation Awareness
 
 F# relies on the level of indentation to discern the beginning and end of an expression.
+You may be familiar with this if you've programmed in Python before.
 
 ```fsharp
 let addTen num =
