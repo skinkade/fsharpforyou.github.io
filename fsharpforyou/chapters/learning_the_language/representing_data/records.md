@@ -3,10 +3,11 @@
 Records represent an immutable aggregate or collection of named values.
 
 ```fsharp
-type Person =
-    { FirstName: string
-      LastName: string
-      Age: int }
+type Person = {
+  FirstName: string
+  LastName: string
+  Age: int
+}
 ```
 
 We can define a record value, by supplying each named member with a value like so:
@@ -34,9 +35,14 @@ person.FirstName // "John"
 
 Anonymous records allow you to define record values without creating an extra type.
 These are often used as one-off values that don't need to be reused elsewhere.
+You can create an anonymous record value like you would a normal record, with vertical bars accompanying the curly braces.  
 
 ```fsharp
-let anonymousPerson = {| FullName = "John Doe"; CurrentActivity = "Being secretive" |}
-//                    ^^                                                            ^^
-//                     notice the vertical bars, which indicates an anonymous record.
+let anonymousPerson = {|
+  FullName = "John Doe"
+  CurrentActivity = "Being secretive"
+|}
+
+let activity = anonymousPerson.CurrentActivity
+// "Being secretive"
 ```
