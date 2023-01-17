@@ -1,6 +1,6 @@
 # Loops
 
-Loops allow you to enumerate a sequence of elements, and perform a specific action with every element in the sequence.
+`for...in` expressions allow us to enumerate over a sequence of values and use the value in an expression body. The result of the expression body is ignored. Oftentimes, a unit-returning function will be called with the current value.
 
 ```fsharp
 let nums = [1; 2; 3; 4; 5]
@@ -9,14 +9,10 @@ for elem in nums do
     printfn $"{elem}"
 ```
 
-The `for` expression accepts a pattern for each element in the sequence.
-In this instance we're supplying `elem`, utilizing the variable pattern, which binds a value to a name.
-If we wanted to deconstruct a value, we could supply an alternative pattern.
-Here we will demonstrate this with a list of tuple values.
+You can also iterate over a range of numbers using the range operator like so:
 
 ```fsharp
-let coords = [ (1, 2); (3, 4); (5, 6) ]
-
-for (x, y) in coords do
-    printfn $"X: {x}, Y: {y}"
+for i in 0..10 do
+    printfn $"Number: {i}"
 ```
+
