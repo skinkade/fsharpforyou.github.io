@@ -46,3 +46,13 @@ let anonymousPerson = {|
 let activity = anonymousPerson.CurrentActivity
 // "Being secretive"
 ```
+
+Records are compared by value. Each property of a record will be compared for equality. If all values pass the equality check... the two records are considered equal.
+
+```fsharp
+let person1 = { FirstName = "John"; LastName = "Doe"; Age = 25 }
+let person2 = { FirstName = "John"; LastName = "Doe"; Age = 25 }
+person1 = person2  // result: true
+//      ^
+// are they equal?
+```
