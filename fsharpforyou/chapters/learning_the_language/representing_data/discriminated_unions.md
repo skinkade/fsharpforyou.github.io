@@ -43,17 +43,17 @@ Although this is valid F# code, it's not entirely clear what properties the valu
 
 ```fsharp
 type Square = { Size: int }
-type Rectangle = { Length: int; Width: int }
+type Rectangle = { Length: int; Height: int }
 
 type Shape =
     | Square of Square
     | Rectangle of Rectangle
 
 let square = Square { Size = 10 }
-let rectangle = Rectangle { Length = 15; Width = 20 }
+let rectangle = Rectangle { Length = 15; Height = 20 }
 ```
 
-Like records, discriminated unions are immutable and compared by value. If you compare two instances of a union type, if they have the same case and equal associated data, they are equal.
+Like records, discriminated unions are immutable and compared by value. If you compare two instances of a union type, if they have the same case and the data associated with them are equal, they are equal.
 
 ```fsharp
 let email1 = EmailAddress "email@provider.com"
