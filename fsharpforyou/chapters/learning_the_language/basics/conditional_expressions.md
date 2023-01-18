@@ -19,6 +19,27 @@ let age = 20
 let output = if age >= 18 then "Adult" else "Minor"
 ```
 
+`if` expressions can have more than two branches by including `elif`, which is an `else` branch with another `if` condition.
+
+```fsharp
+let outputAgeDetails age country =
+    let minimumDrinkingAge =
+        if country = "USA" then 21 else 18
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//      this may not be true in all cases...
+//      but let's pretend it is
+
+    if age >= 18 && age >= minimumDrinkingAge then
+        "Is an adult and can drink"
+    elif age >= 18 then
+        "Is an adult but can NOT drink"
+    else
+        "Is not an adult"
+
+outputAgeDetails 20 "USA" // "Is an adult but can NOT drink"
+outputAgeDetails 18 "UK" // "Is an adult and can drink"
+```
+
 All branches of a conditional expression must return values of the same type,
 which is inferred from the return value of the first branch (or optionally, the type annotation of the binding/function).
 If the first branch returns a string value, the second branch cannot return a unit value as a unit is not convertible to a string.
