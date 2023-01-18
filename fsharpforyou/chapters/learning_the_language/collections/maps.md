@@ -4,7 +4,7 @@ Maps represent an immutable collection of key-value pairs.
 
 You can think of a collection of key-value pairs as a collection of 2-element tuples, where the first element is the key, and the second is the value.
 
-```fs
+```fsharp
 let keyValuePairs = [
     "Key1", "Value1"
     "Key2", "Value2"
