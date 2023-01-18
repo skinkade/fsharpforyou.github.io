@@ -1,19 +1,19 @@
 # Type Aliases
 
-Types aliases are abbreviations for existing types.
-These are often used to give more context to a primitive type or to shorten type annotations.
+Types aliases are abbreviations for existing types. As aliases or abbreviations, these are often used to create a shorter and reusable name for an existing type.  
 
 ```fsharp
-type EmailAddress = string
+type Strings = string list
 ```
 
-Because the `EmailAddress` type is an alias or abbreviation for `string`, the two can be used interchangeably.
+Because the `Strings` type is an abbreviation for `string list`, the two can be used interchangeably.
 
 ```fsharp
-let contact (emailAddress: EmailAddress) = $"Sending an email to {emailAddress}"
+let commas (strings: Strings) =
+    String.concat "," strings
 
-contact "johndoe@site.com" // "Sending an email to johndoe@site.com"
+commas ["Hello"; "World"] // "Hello,World"
+//     ^^^^^^^^^^^^^^^^^^
+//     passing a string list where
+//     a `Strings` is expected.
 ```
-
-This can often be used to give more context to a primitive type, such as `string`, without wrapping it in a stricter type.
-<!-- If you're expecting strictness here, where `EmailAddress` has to be a valid email, don't.  -->
