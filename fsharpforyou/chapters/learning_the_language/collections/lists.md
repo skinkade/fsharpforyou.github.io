@@ -1,10 +1,28 @@
 # Lists
 
-Lists are an immutable series of elements implemented as a singly linked list.
+Lists are an immutable series of elements implemented as a singly linked list. A singly linked list is a list where each element is a node that contains a current value, and the next node. You can think of it as a list where each element has a pointer to the subsequent list of elements recursively.
+
+```
+1 -> 2 -> 3 -> 4 -> 5
+```
+
+The benefits of this implementation are immutability, the reusability of sub-sequences when constructing new lists, constant time head (first element) access, and fast deconstruction of the list into its head and tail components (which is often used in recursive functions).
+
 We can define a list by surrounding a series of semicolon-separated values with square brackets.
 
 ```fsharp
 let numbers = [1; 2; 3; 4; 5; 6; 7; 8; 9; 10]
+```
+
+Semicolons are required for a single-line declaration like many other constructs and can be omitted when defined in multiple lines.
+
+```fsharp
+let numbers = [
+    1
+    2
+    3
+    4
+]
 ```
 
 Because lists are immutable, we can't change the contents of an existing list.
