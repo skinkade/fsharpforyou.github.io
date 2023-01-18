@@ -24,4 +24,22 @@ let (firstName, lastName, age) = "John", "Doe", 25
 // age = 25
 ```
 
-This however does not work with all patterns. Patterns in let bindings or function arguments must be exhaustive. This means all possible values need to be accounted for by the pattern. In the case of the variable and tuple pattern, it will always match against the value and can therefore be used in let bindings and function arguments.
+This not only works for let bindings but also function arguments and `for..in` expressions.
+
+```fsharp
+let printCoordinate (x, y, z) =
+//                  ^^^^^^^^^
+//                  tuple and variable pattern.
+    printfn $"X: {x}, Y: {y}, Z: {z}"
+
+let printAllCoordinates coords =
+    for (x, y, z) in coords do
+//      ^^^^^^^^^
+//      tuple and variable pattern.
+        printfn $"X: {x}, Y: {y}, Z: {z}"
+
+printCoordinate (1, 2, 3)
+printAllCoordinates [(1, 2, 3); (4, 5, 6)]
+```
+
+This however does not work with all patterns. Patterns in let bindings, function arguments, and `for..in` expressions must be exhaustive. This means all possible values need to be accounted for by the pattern. In the case of the variable and tuple pattern, it will always match against the value and can therefore be used in these cases.
