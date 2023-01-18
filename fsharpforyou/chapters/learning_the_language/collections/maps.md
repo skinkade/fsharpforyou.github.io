@@ -1,48 +1,62 @@
 # Maps
 
-Maps represent an immutable sequence of key-value pairs in tuple form.
+Maps represent an immutable collection of key-value pairs.
 
-To start, let's construct an empty map and add values to it one by one.
-Because maps are immutable, after adding each key-value pair, we will get back a new map with the appropriate additions.
+You can think of a collection of key-value pairs as a collection of 2-element tuples, where the first element is the key, and the second is the value.
 
-```fsharp
-let map = Map.empty
-let map1 = Map.add 1 "Hello, World" map
-let map2 = Map.add 2 "Hello, World" map1
-printfn "%A" map2 // [(1, "Hello, World"); (2, "Hello, World")]
+```fs
+let keyValuePairs = [
+    "Key1", "Value1"
+    "Key2", "Value2"
+]
 ```
 
-You can also construct a map from a sequence or list of key-value pairs.
+This list of key-value pairs can be converted directly into a map using the `Map.ofList` module function.
 
 ```fsharp
-let mapFromSequence =
-    Map.ofSeq
-        seq {
-            (1, "Hello, World")
-            (2, "Hello, World")
-        } 
+let keyValuePairs = [
+    "Key1", "Value1"
+    "Key2", "Value2"
+]
 
-printfn "%A" mapFromSequence // [(1, "Hello, World"); (2, "Hello, World")]
-
-let valuesL = [(1, "Hello, World"); (2, "Hello, World")]
-let mapFromList = Map.ofList valuesL
-printfn "%A" mapFromList // [(1, "Hello, World"); (2, "Hello, World")]
+let map = Map.ofList keyValuePairs
+// map = Map<string, string>
+//           ^^^^^^  ^^^^^^
+//           key     value
 ```
 
-To lookup a value by its key, you can use `Map.find` or `Map.tryFind`.
-The latter function returns an optional value,
-while the former will throw an exception if the key isn't present in the map.
+You can access the values of a map by looking up their respective keys using the `Map.find` or `Map.tryFind` value. The `try` variant will throw an exception (error) if the key does not exist. The `tryFind` variant will yield an optional value, which is a type that represents the presence or absence of a value (this will be covered more later).
 
 ```fsharp
-let map = Map(
-    seq {
-        (1, "Hello, World")
-        (2, "Hello, World")
-    })
+let value1 = Map.find "Key1" map // "Value1"
+let value2 = Map.find "Key2" map // "Value2"
 
-let value1 = Map.find 1 map
-let optionalValue2 = Map.tryFind 2 map
+let value1Option = Map.tryFind "Key1" map // Some "Value1"
+let value2Option = Map.tryFind "Key2" map // Some "Value2"
+let value3Option = Map.tryFind "test" map // None <- does not exist in map
+```
 
-printfn "%A" value1 // "Hello, World"
-printfn "%A" optionalValue2 // Some "Hello, World"
+Maps, like lists, are immutable. After adding or removing an element, we will get back a new map with the appropriate additions or deletions.
+
+```fsharp
+let map1 = Map.add "Key3" "Value3" map
+(*
+map1 =
+  [
+    ("Key1", "Value1")
+    ("Key2", "Value2")
+    ("Key3", "Value3")
+  ]
+*)
+
+let map2 = Map.add "Key4" "Value4" map1
+(*
+map2 =
+  [
+    ("Key1", "Value1")
+    ("Key2", "Value2")
+    ("Key3", "Value3")
+    ("Key4", "Value4")
+  ]
+*)
 ```
