@@ -27,7 +27,7 @@ person.FirstName // "John"
 ```
 
 Classes can also encapsulate behavior (functions!).
-These are a bit different than let bindings, as they usually are uncurried and exist on instances of a class.
+These are a bit different than traditional functions, as they usually are uncurried and exist on instances of a class.
 
 ```fsharp
 type Person(firstName: string, lastName: string) =
@@ -43,4 +43,20 @@ type Person(firstName: string, lastName: string) =
 
 let person = Person("John", "Doe")
 let greeting = person.Greet() // "Hello John Doe!"
+```
+
+One caveat when using instance members is type inference.
+The F# compiler cannot infer the types from member invocations alone and may need additional type annotations.
+
+```fsharp
+let test person =
+    person.Greet() // <- compiler error
+//         ^^^^^^^
+// The compiler can't determine the type of `person`
+// so this member invocation is entirely arbitrary.
+
+let test2 (person: Person) =
+//         ^^^^^^^^^^^^^^
+//         type annotation is required
+    person.Greet() // <- this works
 ```
